@@ -1,0 +1,85 @@
+﻿Build started 29/12/2015 20:54:46.
+     1>Project "G:\VSProjects\SurvivalGame\SurvivalGame\SurvivalGame.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         G:\Programs\VS2015\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt Camera.cpp Input.cpp Shader.cpp Engine.cpp Game.cpp GlobalSystem.cpp main.cpp MeshSystem.cpp Renderer.cpp RenderWindow.cpp StaticMesh.cpp TerrainGen.cpp
+         TerrainGen.cpp
+     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(36): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(37): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(38): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+         StaticMesh.cpp
+         RenderWindow.cpp
+         Renderer.cpp
+     1>g:\vsprojects\survivalgame\survivalgame\renderer.cpp(45): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+         MeshSystem.cpp
+         main.cpp
+         GlobalSystem.cpp
+         Game.cpp
+         Engine.cpp
+         Shader.cpp
+         Input.cpp
+         Camera.cpp
+         Generating Code...
+     1>g:\vsprojects\survivalgame\survivalgame\camera.h(23): warning C4172: returning address of local variable or temporary
+       Link:
+         G:\Programs\VS2015\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"G:\VSProjects\SurvivalGame\x64\Debug\SurvivialGame.exe" /INCREMENTAL /NOLOGO glew32.lib glfw3.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"G:\VSProjects\SurvivalGame\x64\Debug\SurvivialGame.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\VSProjects\SurvivalGame\x64\Debug\SurvivialGame.lib" /MACHINE:X64 x64\Debug\Camera.obj
+         x64\Debug\Input.obj
+         x64\Debug\Shader.obj
+         x64\Debug\Engine.obj
+         x64\Debug\Game.obj
+         x64\Debug\GlobalSystem.obj
+         x64\Debug\main.obj
+         x64\Debug\MeshSystem.obj
+         x64\Debug\Renderer.obj
+         x64\Debug\RenderWindow.obj
+         x64\Debug\StaticMesh.obj
+         x64\Debug\TerrainGen.obj
+         x64\Debug\tiny_obj_loader.obj
+     1>Camera.obj : error LNK2019: unresolved external symbol glfwGetFramebufferSize referenced in function "public: __cdecl CCamera::CCamera(void)" (??0CCamera@@QEAA@XZ)
+     1>Camera.obj : error LNK2019: unresolved external symbol glfwGetKey referenced in function "public: virtual bool __cdecl CCamera::key_callback(struct GLFWwindow *,int,int,int,int)" (?key_callback@CCamera@@UEAA_NPEAUGLFWwindow@@HHHH@Z)
+     1>Camera.obj : error LNK2019: unresolved external symbol glfwGetCursorPos referenced in function "public: void __cdecl CCamera::Update(float,struct GLFWwindow *)" (?Update@CCamera@@QEAAXMPEAUGLFWwindow@@@Z)
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewDeleteProgram
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewDeleteShader
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramInfoLog
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramiv
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+     1>Shader.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+     1>Renderer.obj : error LNK2001: unresolved external symbol __imp___glewUniformMatrix4fv
+     1>Renderer.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+     1>Renderer.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+     1>StaticMesh.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwInit referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwDestroyWindow referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>RenderWindow.obj : error LNK2019: unresolved external symbol glfwSwapInterval referenced in function "public: void __cdecl CRenderWindow::Create(int,int,struct SGlobalSystem *)" (?Create@CRenderWindow@@QEAAXHHPEAUSGlobalSystem@@@Z)
+     1>StaticMesh.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+     1>StaticMesh.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+     1>StaticMesh.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+     1>StaticMesh.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+     1>StaticMesh.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+     1>StaticMesh.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+     1>StaticMesh.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+     1>TerrainGen.obj : error LNK2019: unresolved external symbol "public: virtual __cdecl noise::module::Module::~Module(void)" (??1Module@module@noise@@UEAA@XZ) referenced in function "public: virtual __cdecl noise::module::Perlin::~Perlin(void)" (??1Perlin@module@noise@@UEAA@XZ)
+     1>TerrainGen.obj : error LNK2019: unresolved external symbol "public: __cdecl noise::module::Perlin::Perlin(void)" (??0Perlin@module@noise@@QEAA@XZ) referenced in function "public: void __cdecl CTerrainGen::GenerateTerrain(void)" (?GenerateTerrain@CTerrainGen@@QEAAXXZ)
+     1>TerrainGen.obj : error LNK2019: unresolved external symbol "public: virtual double __cdecl noise::module::Perlin::GetValue(double,double,double)const " (?GetValue@Perlin@module@noise@@UEBANNNN@Z) referenced in function "public: void __cdecl CTerrainGen::GenerateTerrain(void)" (?GenerateTerrain@CTerrainGen@@QEAAXXZ)
+     1>MSVCRTD.lib(exe_winmain.obj) : error LNK2019: unresolved external symbol WinMain referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+     1>G:\VSProjects\SurvivalGame\\lib\glew32.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+     1>G:\VSProjects\SurvivalGame\\lib\glfw3.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+     1>G:\VSProjects\SurvivalGame\x64\Debug\SurvivialGame.exe : fatal error LNK1120: 40 unresolved externals
+     1>Done Building Project "G:\VSProjects\SurvivalGame\SurvivalGame\SurvivalGame.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:09.61

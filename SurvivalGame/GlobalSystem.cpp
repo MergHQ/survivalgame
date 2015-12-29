@@ -2,6 +2,12 @@
 #include <iostream>
 #include "Game.h"
 #include "Engine.h"
+#include <GLFW\glfw3.h>
+
+SGlobalSystem::SGlobalSystem(GLFWwindow* win)
+{
+	pWin = win;
+}
 
 SGlobalSystem::~SGlobalSystem()
 {
@@ -11,11 +17,11 @@ SGlobalSystem::~SGlobalSystem()
 
 void SGlobalSystem::Init()
 {
-	pGame = new CGame;
-	pGame->Init();
-
 	pEngine = new CEngine;
 	pEngine->Init();
+
+	pGame = new CGame;
+	pGame->Init();
 }
 
 void SGlobalSystem::Update()

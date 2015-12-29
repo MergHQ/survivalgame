@@ -2,6 +2,7 @@
 
 class CMeshSystem;
 class CRenderer;
+class CInput;
 
 class CEngine
 {
@@ -11,6 +12,7 @@ public:
 
 	CRenderer* pRenderer;
 	CMeshSystem* pMeshSystem;
+	CInput* pInput;
 
 	void Init();
 	void Update();

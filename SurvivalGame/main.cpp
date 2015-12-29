@@ -2,8 +2,6 @@
 #include "GlobalSystem.h"
 #include "RenderWindow.h"
 
-SGlobalSystem* gSys;
-
 int main()
 {
 	CMainWindow();
@@ -12,11 +10,9 @@ int main()
 
 void CMainWindow::Init()
 {
-	gSys = new SGlobalSystem;
-	gSys->Init();
-
 	CRenderWindow* pWin = new CRenderWindow;
-	pWin->Create(1280, 720);
+	pWin->Create(1920, 1080, gSys);
+
 	delete pWin;
 	delete gSys;
 	exit(EXIT_SUCCESS);

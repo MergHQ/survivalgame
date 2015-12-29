@@ -1,35 +1,54 @@
 #include "StaticMesh.h"
 #include "tiny_obj_loader.h"
-#include <GLFW\glfw3.h>
-#include <GL\glew.h>
 #include "GlobalSystem.h"
+#include <glm\gtc\matrix_transform.hpp>
 
-CStaticMesh::CStaticMesh(std::string file)
+CStaticMesh::CStaticMesh(std::string file, IShader* pShader, SMeshData& data)
 {
-	std::vector<tinyobj::shape_t> shapes;
-	std::vector<tinyobj::material_t> materials;
+	tinyobj::mesh_t shape;
+	GLuint vbo = 0, indicies = 0, normals = 0, texcoords = 0;
+	m_pShader = pShader;
 
-	std::string err = tinyobj::LoadObj(shapes, materials, file.c_str());
-
-	if (!err.empty())
+	if (file == "")
 	{
-		gSys->Log("Cannot find the .obj file specified.",this);
-		m_vao = 0;
+		shape.indices = data.indices;
+		shape.normals = data.normals;
+		shape.positions = data.positions;
+		shape.texcoords = data.texcoord;
+	}
+	else
+	{
+
+		m_pShader = pShader;
+		m_fileName = file;
+		std::vector<tinyobj::shape_t> shapes;
+		std::vector<tinyobj::material_t> materials;
+
+		std::string err = tinyobj::LoadObj(shapes, materials, file.c_str());
+
+		if (!err.empty())
+		{
+			gSys->Log("Cannot find the .obj file specified.", this);
+		}
+
+		if (shapes.size() != 0)
+			shape = shapes[0].mesh;
+		else
+			gSys->Log("0 shapes loaded.", this);
 	}
 
-	GLuint vbo = 0, indicies = 0, normals = 0, texcoords = 0;
-
+	m_vao = 0;
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
 
-	auto shape = shapes[0].mesh;
+	m_indexCount = shape.indices.size();
 
 	if (!shape.positions.empty() || !shape.normals.empty() || !shape.texcoords.empty())
 	{
 		glEnableVertexAttribArray(0);
 		glGenBuffers(1, &vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Vec3) * shape.positions.size(), &shape.positions[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * shape.positions.size(), &shape.positions[0], GL_STATIC_DRAW);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, GL_FALSE, (GLubyte *)NULL);
 
 		glGenBuffers(1, &indicies);
@@ -52,9 +71,17 @@ CStaticMesh::CStaticMesh(std::string file)
 		gSys->Log("One or more of the requried geometry properties are missing. Please check your OBJ file.", this);
 
 	glBindVertexArray(NULL);
+
+	BuildMatrix(glm::vec3(1, 1, 1));
 }
 
 CStaticMesh::~CStaticMesh()
 {
 	glDeleteBuffers(1, &m_vao);
+	delete m_pShader;
+}
+
+void CStaticMesh::BuildMatrix(glm::vec3& position)
+{
+	m_modelMatrix = glm::translate(glm::mat4(), position);
 }

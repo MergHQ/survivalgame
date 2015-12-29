@@ -5,17 +5,19 @@
 
 class CGame;
 class CEngine;
+struct GLFWwindow;
 
 struct SGlobalSystem
 {
 public:
 
-	SGlobalSystem() {};
+	SGlobalSystem(GLFWwindow*);
 	~SGlobalSystem();
 
 	CGame* pGame;
 	CEngine* pEngine;
-
+	GLFWwindow* pWin;
+	
 	void Init();
 	void Update();
 	template <class T> 

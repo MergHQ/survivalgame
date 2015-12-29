@@ -37,6 +37,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Source Files\Game\Camera">
+      <UniqueIdentifier>{ffea47fe-cdac-4fec-84f2-4855bebfb4f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\System\Input">
+      <UniqueIdentifier>{eb0d487e-4e7c-4931-b996-986786f35ff9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +71,21 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\Engine\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\Engine\System\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainGen.cpp">
+      <Filter>Source Files\Game\System</Filter>
+    </ClCompile>
+    <ClCompile Include="noiseutils.cpp">
+      <Filter>Source Files\Engine\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +118,30 @@
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Source Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="IShader.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Source Files\Engine\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.hpp">
+      <Filter>Source Files\Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Source Files\Engine\System\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\Game\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="IInputListener.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainGen.h">
+      <Filter>Source Files\Game\System</Filter>
+    </ClInclude>
+    <ClInclude Include="noiseutils.h">
+      <Filter>Source Files\Engine\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
