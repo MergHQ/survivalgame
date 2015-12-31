@@ -23,9 +23,6 @@ void CEngine::Init()
 
 	pRenderer = new CRenderer;
 	pRenderer->InitDependencies();
-
-	CTerrainGen tg;
-	tg.GenerateTerrain(1024, 1024, 2.0, 12.0, 1.0, 18.0);
 }
 
 void CEngine::Update()

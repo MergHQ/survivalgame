@@ -2,6 +2,7 @@
 #include "tiny_obj_loader.h"
 #include "GlobalSystem.h"
 #include <glm\gtc\matrix_transform.hpp>
+#include "Engine.h"
 
 CStaticMesh::CStaticMesh(std::string file, IShader* pShader, SMeshData& data)
 {
@@ -71,14 +72,20 @@ CStaticMesh::CStaticMesh(std::string file, IShader* pShader, SMeshData& data)
 		gSys->Log("One or more of the requried geometry properties are missing. Please check your OBJ file.", this);
 
 	glBindVertexArray(NULL);
-
-	BuildMatrix(glm::vec3(1, 1, 1));
+	m_pos = glm::vec3(1, 1, 1);
+	BuildMatrix(m_pos);
 }
 
 CStaticMesh::~CStaticMesh()
 {
 	glDeleteBuffers(1, &m_vao);
 	delete m_pShader;
+}
+
+void CStaticMesh::SetPosition(glm::vec3 & pos)
+{
+	m_pos = pos;
+	BuildMatrix(pos);
 }
 
 void CStaticMesh::BuildMatrix(glm::vec3& position)

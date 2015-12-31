@@ -15,25 +15,30 @@ CRenderer::CRenderer()
 {
 }
 
-
 CRenderer::~CRenderer()
 {
+	delete m_pGBuffer;
 }
 
 void CRenderer::InitDependencies()
 {
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
+
+	m_pGBuffer = new CGBuffer;
 }
 
 void CRenderer::Render()
 {
+	m_pGBuffer->Begin();
 	ClearFrame();
 	MeshPass();
+	m_pGBuffer->RenderQuad();
 }
 
 void CRenderer::MeshPass()
 {
+	m_pGBuffer->MeshPass();
 	glm::mat4 vp = gSys->pGame->pCamera->GetVPMatrix();
 	for (std::pair<unsigned int, IMesh*> it : gSys->pEngine->pMeshSystem->GetMeshContainer())
 	{
@@ -49,5 +54,5 @@ void CRenderer::MeshPass()
 void CRenderer::ClearFrame()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.2,0.2,0.9,1);
+	glClearColor(0.5,0.5,0.8,1);
 }

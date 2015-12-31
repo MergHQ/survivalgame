@@ -28,9 +28,14 @@ in vec3 v_pos;
 
 void main()
 {
-	vec3 lightPos = vec3(100,100,100);
+	vec3 lightPos = vec3(1000,500,1000);
 	vec3 lightDir = normalize(lightPos - v_pos);
-	float multiplier = dot(normalize(v_normal), lightDir);
+	float NdotL = dot(normalize(v_normal), lightDir);
+	vec4 diffuse = vec4(0);
+	if(NdotL > 0.0)
+		diffuse = vec4(vec3(1,1,1)*NdotL, 1);
 
-	color = vec4(0.1,0.5,0.1,1) * multiplier + vec4(vec3(0.05),1);
+	vec4 c = vec4(0);
+
+	color = texture() * (vec4(0.2,0.2,0.2,1) + diffuse);
 }

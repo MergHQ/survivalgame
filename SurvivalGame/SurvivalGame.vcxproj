@@ -155,6 +155,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="FboTexture.cpp" />
+    <ClCompile Include="GBuffer.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="noiseutils.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -171,8 +173,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="FboTexture.h" />
+    <ClInclude Include="GBuffer.h" />
     <ClInclude Include="IInputListener.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="ITexture.h" />
     <ClInclude Include="noiseutils.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Engine.h" />

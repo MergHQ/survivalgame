@@ -1,4 +1,6 @@
 #pragma once
+#include "GBuffer.h"
+
 class CRenderer
 {
 public:
@@ -11,5 +13,6 @@ public:
 private:
 	void MeshPass();
 	void ClearFrame();
+	CGBuffer* m_pGBuffer;
 };
 

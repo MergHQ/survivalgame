@@ -1,6 +1,7 @@
 #pragma once
 #include "IMesh.h"
 #include "MeshSystem.h"
+#include <glm\vec3.hpp>
 
 class CStaticMesh : public IMesh
 {
@@ -15,6 +16,8 @@ public:
 	virtual IShader* GetShader() { return m_pShader; }
 	virtual glm::mat4& GetModelMatrix() { return m_modelMatrix; }
 	virtual size_t& GetIndexCount() { return m_indexCount; }
+	virtual void SetPosition(glm::vec3& pos);
+	virtual glm::vec3& GetPosition() { return m_pos; }
 	// ~IMesh
 
 private:
@@ -25,5 +28,6 @@ private:
 	std::string m_fileName;
 	unsigned int m_vao;
 	size_t m_indexCount;
+	glm::vec3 m_pos;
 };
 

@@ -33,7 +33,7 @@ void CRenderWindow::Create(int x, int y, SGlobalSystem* sys)
 	glfwMakeContextCurrent(m_pWin);
 	glfwSwapInterval(1);
 	glfwSetKeyCallback(m_pWin, key_callback);
-	glfwSetInputMode(m_pWin, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	glfwSetInputMode(m_pWin, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glewInit();
 
 	sys = new SGlobalSystem(m_pWin);

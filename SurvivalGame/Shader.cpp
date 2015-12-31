@@ -88,4 +88,10 @@ void CShader::GenerateUniformLocations()
 	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_mvp"));
 	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_texSampler"));
 	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_2world"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_gColor"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_gNormal"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_gPos"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_gDepth"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_width"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_height"));
 }
