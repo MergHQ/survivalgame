@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Engine\System\Input">
       <UniqueIdentifier>{eb0d487e-4e7c-4931-b996-986786f35ff9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Environment">
+      <UniqueIdentifier>{7bfc8ee5-e196-4bef-bfcb-aa95d0bb4204}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -91,6 +94,24 @@
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="FboTexture.cpp">
+      <Filter>Source Files\Engine\System</Filter>
+    </ClCompile>
+    <ClCompile Include="SSAO.cpp">
+      <Filter>Source Files\Engine\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="lodepng.cpp">
+      <Filter>Source Files\Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Source Files\Engine\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Engine\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Sun.cpp">
+      <Filter>Source Files\Engine\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="LightSystem.cpp">
       <Filter>Source Files\Engine\System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -156,6 +177,27 @@
       <Filter>Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="FboTexture.h">
+      <Filter>Source Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="SSAO.h">
+      <Filter>Source Files\Engine\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="lodepng.h">
+      <Filter>Source Files\Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ILight.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Source Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Source Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Sun.h">
+      <Filter>Source Files\Engine\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="LightSystem.h">
       <Filter>Source Files\Engine\System</Filter>
     </ClInclude>
   </ItemGroup>

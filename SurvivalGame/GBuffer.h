@@ -12,6 +12,8 @@ public:
 	void RenderQuad();
 	std::vector<ITexture*>& GetTextures() { return m_textures; }
 	void MeshPass();
+	void StencilPass();
+	void LightPass();
 	void Begin();
 
 	int width, height;

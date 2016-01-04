@@ -1,42 +1,18 @@
-﻿Build started 31/12/2015 13:14:18.
+﻿Build started 04/01/2016 22:33:16.
      1>Project "G:\VSProjects\survivalgame\SurvivalGame\SurvivalGame.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SurvivalGame.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         G:\Programs\VS2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_WARNINGS /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp GBuffer.cpp Game.cpp GlobalSystem.cpp RenderWindow.cpp Renderer.cpp Shader.cpp StaticMesh.cpp TerrainGen.cpp main.cpp
-         TerrainGen.cpp
-     1>g:\vsprojects\survivalgame\survivalgame\noiseutils.h(1217): warning C4244: 'initializing': conversion from 'const double' to 'float', possible loss of data
-     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(34): warning C4305: 'argument': truncation from '__int64' to 'int'
-     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(34): warning C4309: 'argument': truncation of constant value
-     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(78): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-     1>g:\vsprojects\survivalgame\survivalgame\terraingen.cpp(80): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-         Generating Code...
-         Compiling...
-         main.cpp
-         StaticMesh.cpp
-         Shader.cpp
-         Renderer.cpp
-     1>g:\vsprojects\survivalgame\survivalgame\renderer.cpp(57): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-         RenderWindow.cpp
-         GlobalSystem.cpp
-         Game.cpp
-     1>g:\vsprojects\survivalgame\survivalgame\noiseutils.h(1217): warning C4244: 'initializing': conversion from 'const double' to 'float', possible loss of data
-         GBuffer.cpp
-     1>g:\vsprojects\survivalgame\survivalgame\gbuffer.cpp(86): warning C4018: '<': signed/unsigned mismatch
-         Camera.cpp
-     1>g:\vsprojects\survivalgame\survivalgame\noiseutils.h(1217): warning C4244: 'initializing': conversion from 'const double' to 'float', possible loss of data
-         Generating Code...
-     1>g:\vsprojects\survivalgame\survivalgame\camera.h(23): warning C4172: returning address of local variable or temporary
+         G:\Programs\VS2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_WARNINGS /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Sun.cpp
+         Sun.cpp
        Link:
          G:\Programs\VS2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\VSProjects\survivalgame\Debug\Game.exe" /INCREMENTAL /NOLOGO libnoise.lib glew32.lib glfw3.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"G:\VSProjects\survivalgame\Debug\Game.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\VSProjects\survivalgame\Debug\Game.lib" /MACHINE:X86 Debug\Camera.obj
          Debug\FboTexture.obj
          Debug\GBuffer.obj
          Debug\Input.obj
+         Debug\LightSystem.obj
+         Debug\lodepng.obj
          Debug\noiseutils.obj
+         Debug\PointLight.obj
          Debug\Shader.obj
          Debug\Engine.obj
          Debug\Game.obj
@@ -45,24 +21,15 @@
          Debug\MeshSystem.obj
          Debug\Renderer.obj
          Debug\RenderWindow.obj
+         Debug\SSAO.obj
          Debug\StaticMesh.obj
+         Debug\Sun.obj
          Debug\TerrainGen.obj
+         Debug\Texture.obj
          Debug\tiny_obj_loader.obj
-     1>glfw3.lib(context.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(context.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(init.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(init.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(input.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(input.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(monitor.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(monitor.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(wgl_context.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(wgl_context.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(win32_init.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_init.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(win32_monitor.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_monitor.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(win32_time.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_time.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(win32_tls.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_tls.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(win32_window.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_window.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(window.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(window.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
-     1>glfw3.lib(winmm_joystick.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(winmm_joystick.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
          SurvivalGame.vcxproj -> G:\VSProjects\survivalgame\Debug\Game.exe
      1>Done Building Project "G:\VSProjects\survivalgame\SurvivalGame\SurvivalGame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:08.44
+Time Elapsed 00:00:00.74

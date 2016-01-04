@@ -21,8 +21,8 @@ public:
 	void SetCameraSpeed(float speed) { m_speed = speed; }
 	Vec3 GetWorldPos() { return m_cameraPos; }
 	glm::mat4& GetVPMatrix() { return m_pmatrix * m_vmatrix; }
-	glm::mat4 GetViewMatrix() { return m_vmatrix; }
-	glm::mat4 GetProjectionMatrix() { return m_pmatrix; }
+	glm::mat4& GetViewMatrix() { return m_vmatrix; }
+	glm::mat4& GetProjectionMatrix() { return m_pmatrix; }
 
 	//IInputListener
 	virtual bool key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);

@@ -12,7 +12,7 @@ CCamera::CCamera()
 	m_cameraPos = Vec3(0, 1.8f, 0);
 	glfwGetFramebufferSize(gSys->pWin, &width, &height);
 	// Projection matrix : FOV = 45, aspect ratio, near plane, far plane
-	m_pmatrix = glm::perspective(45.f, (float)width / (float)height, 0.1f, 4000.0f);
+	m_pmatrix = glm::perspective(45.f, (float)width / (float)height, 0.1f, 1000.0f);
 
 	gSys->pEngine->pInput->addListener(this);
 }

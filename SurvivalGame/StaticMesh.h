@@ -1,12 +1,13 @@
 #pragma once
 #include "IMesh.h"
+#include "tiny_obj_loader.h"
 #include "MeshSystem.h"
 #include <glm\vec3.hpp>
 
 class CStaticMesh : public IMesh
 {
 public:
-	CStaticMesh(std::string name, IShader* pShader, SMeshData& data = SMeshData());
+	CStaticMesh(std::string name, std::string shader, std::string texture, SMeshData& data = SMeshData());
 	~CStaticMesh();
 
 	// IMesh
@@ -18,6 +19,8 @@ public:
 	virtual size_t& GetIndexCount() { return m_indexCount; }
 	virtual void SetPosition(glm::vec3& pos);
 	virtual glm::vec3& GetPosition() { return m_pos; }
+	virtual tinyobj::mesh_t& GetMeshData() { return m_sharedShape; }
+	virtual ITexture* GetTexture() { return m_pTexture; }
 	// ~IMesh
 
 private:
@@ -29,5 +32,7 @@ private:
 	unsigned int m_vao;
 	size_t m_indexCount;
 	glm::vec3 m_pos;
+	tinyobj::mesh_t m_sharedShape;
+	ITexture* m_pTexture = nullptr;
 };
 

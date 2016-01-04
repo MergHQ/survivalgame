@@ -6,8 +6,14 @@ CFboTexture::CFboTexture(GLint cbt, GLint dataType, GLint colorAttachment, int w
 
 	if (cbt == GL_RGB32F)
 		mode = GL_RGB;
+	else if (cbt == GL_RGBA32F)
+		mode = GL_RGBA;
+	else if (cbt == GL_RGBA16F)
+		mode = GL_RGB;
 	else if (cbt == GL_DEPTH32F_STENCIL8)
 		mode = GL_DEPTH_STENCIL;
+	else if (cbt == GL_RGBA)
+		mode = GL_RGB;
 	else mode = cbt;
 
 	glGenTextures(1, &m_texId);

@@ -1,5 +1,6 @@
 #pragma once
 #include "noiseutils.h"
+#include <vector>
 
 class CTerrainGen
 {

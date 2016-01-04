@@ -14,17 +14,17 @@ CMeshSystem::~CMeshSystem()
 	}
 }
 
-IMesh* CMeshSystem::CreateMesh(std::string mesh, std::string shader, SMeshData& data)
+IMesh* CMeshSystem::CreateMesh(std::string mesh, std::string shader, SMeshData& data, std::string texture)
 {
 	if (mesh == "")
 	{
-		IMesh* m = new CStaticMesh("", new CShader(shader), data);
+		IMesh* m = new CStaticMesh("", shader, texture, data);
 		m_meshContainer[m_nextId] = m;
 		m_nextId++;
 	}
 	else
 	{
-		IMesh* m = new CStaticMesh(mesh, new CShader(shader));
+		IMesh* m = new CStaticMesh(mesh, shader, texture);
 		m_meshContainer[m_nextId] = m;
 		m_nextId++;
 

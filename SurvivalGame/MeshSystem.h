@@ -17,7 +17,7 @@ public:
 	CMeshSystem();
 	~CMeshSystem();
 
-	IMesh* CreateMesh(std::string mesh, std::string shader, SMeshData& data = SMeshData());
+	IMesh* CreateMesh(std::string mesh, std::string shader, SMeshData& data = SMeshData(), std::string texture = "" );
 	IMesh* GetMeshById(unsigned int id) { return m_meshContainer[id]; }
 	std::map<unsigned int, IMesh*>& GetMeshContainer() { return m_meshContainer; }
 

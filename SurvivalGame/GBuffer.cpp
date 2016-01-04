@@ -3,6 +3,10 @@
 #include "Engine.h"
 #include "FboTexture.h"
 #include "Shader.h"
+#include "Renderer.h"
+#include "SSAO.h"
+#include "Game.h"
+#include "Camera.h"
 
 CGBuffer::CGBuffer()
 {
@@ -19,6 +23,11 @@ CGBuffer::CGBuffer()
 	m_textures.push_back(new CFboTexture(GL_RGB32F, GL_FLOAT, GL_COLOR_ATTACHMENT1, width, height));
 	m_textures.push_back(new CFboTexture(GL_RGB32F, GL_FLOAT, GL_COLOR_ATTACHMENT2, width, height));
 	m_textures.push_back(new CFboTexture(GL_DEPTH32F_STENCIL8, GL_FLOAT_32_UNSIGNED_INT_24_8_REV, GL_DEPTH_STENCIL_ATTACHMENT, width, height));
+	m_textures.push_back(new CFboTexture(GL_RGBA16F, GL_FLOAT, GL_COLOR_ATTACHMENT3, width, height));
+	m_textures.push_back(new CFboTexture(GL_RGBA16F, GL_FLOAT, GL_COLOR_ATTACHMENT4, width, height));
+	m_textures.push_back(new CFboTexture(GL_RGBA, GL_FLOAT, GL_COLOR_ATTACHMENT5, width, height));
+
+
 
 	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	if (status != GL_FRAMEBUFFER_COMPLETE)
@@ -88,14 +97,58 @@ void CGBuffer::RenderQuad()
 
 	glUniform1i(m_pQuadShader->GetUniforms()[WIDTH], width);
 	glUniform1i(m_pQuadShader->GetUniforms()[HEIGHT], height);
+
+	gSys->pEngine->pRenderer->GetSSAOProcessor()->SendUniforms
+		(
+			m_pQuadShader->GetUniforms()[SSAOKERNEL],
+			m_pQuadShader->GetUniforms()[SSAORADIUS],
+			m_pQuadShader->GetUniforms()[PROJMAT],
+			m_pQuadShader->GetUniforms()[NOISETEXTURE]
+		);
+
+	// Sun params
+	auto sun = gSys->pEngine->pRenderer->GetLightSystem()->GetSun();
+	glUniform3f(m_pQuadShader->GetUniforms()[LIGHTPOS], sun->GetLightPosition().x, sun->GetLightPosition().y, sun->GetLightPosition().z);
+	glm::vec3 color = sun->GetSetLightColor(glm::vec3(), false);
+	glUniform3f(m_pQuadShader->GetUniforms()[LIGHTCOLOR], color.x, color.y, color.z);
+
 	glBindVertexArray(m_quadVao);
 	glDrawElements(GL_TRIANGLES, m_indices * sizeof(uint32_t), GL_UNSIGNED_INT, 0);
 }
 
 void CGBuffer::MeshPass()
 {
-	GLenum DrawBuffers[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
-	glDrawBuffers(3, DrawBuffers);
+	GLenum DrawBuffers[5] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3, GL_COLOR_ATTACHMENT4 };
+	glDrawBuffers(5, DrawBuffers);
+	glDepthMask(GL_TRUE);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+}
+
+void CGBuffer::StencilPass()
+{
+	glDepthMask(GL_FALSE);
+	glDrawBuffer(GL_NONE);
+	glClear(GL_STENCIL_BUFFER_BIT);
+	glEnable(GL_STENCIL_TEST);
+	glDisable(GL_CULL_FACE);
+	glStencilFunc(GL_ALWAYS, 0, 0);
+	glStencilOpSeparate(GL_BACK, GL_KEEP, GL_INCR, GL_KEEP);
+	glStencilOpSeparate(GL_FRONT, GL_KEEP, GL_DECR, GL_KEEP);
+}
+
+void CGBuffer::LightPass()
+{
+	glClearColor(0, 0, 0, 0);
+	glDrawBuffer(GL_COLOR_ATTACHMENT5);
+	glStencilFunc(GL_NOTEQUAL, 0, 0xFF);
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendEquation(GL_FUNC_ADD);
+	glBlendFunc(GL_ONE, GL_ONE);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
 }
 
 void CGBuffer::Begin()

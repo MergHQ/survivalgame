@@ -6,7 +6,7 @@
 
 enum
 {
-	MVP, TEXTURESAMPLER, OBJ2WORLD, gCOLOR, gNORMAL, gPOS, gDEPTH, WIDTH, HEIGHT
+	MODELMAT, VIEWMAT, TEXTURESAMPLER, OBJ2WORLD, gCOLOR, gNORMAL, gPOS, gDEPTH, gDEPTHPOS, gVIEWNORMAL, gLIGHTBUFFER, WIDTH, HEIGHT, SSAOKERNEL, SSAORADIUS, PROJMAT, NOISETEXTURE, LIGHTCOLOR, LIGHTPOS, LIGHTATT
 };
 
 class CShader : public IShader
@@ -22,6 +22,7 @@ public:
 
 protected:
 private:
+	std::string LoadFile(std::string file);
 	std::vector<GLuint> m_uniformLocations;
 	void GenerateUniformLocations();
 	GLuint m_program;
