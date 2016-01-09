@@ -75,8 +75,12 @@ void CLightSystem::DrawLights()
 			gSys->pEngine->pRenderer->GetGBuffer()->GetTextures()[i]->ActivateTexture(
 				GL_TEXTURE5 + i, lightSphere->GetShader()->GetUniforms()[gCOLOR + i]);
 
+		glUniform1i(lightSphere->GetShader()->GetUniforms()[WIDTH], gSys->pEngine->pRenderer->GetGBuffer()->width);
+		glUniform1i(lightSphere->GetShader()->GetUniforms()[HEIGHT], gSys->pEngine->pRenderer->GetGBuffer()->width);
+
 		// Lights
-		glUniform3f(
+		glUniform3f
+			(
 			lightSphere->GetShader()->GetUniforms()[LIGHTCOLOR],
 			castedLight->GetSetLightColor(glm::vec3(), false).x, castedLight->GetSetLightColor(glm::vec3(), false).y, castedLight->GetSetLightColor(glm::vec3(), false).z
 			);

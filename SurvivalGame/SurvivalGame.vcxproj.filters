@@ -114,6 +114,9 @@
     <ClCompile Include="LightSystem.cpp">
       <Filter>Source Files\Engine\System</Filter>
     </ClCompile>
+    <ClCompile Include="RadianceGen.cpp">
+      <Filter>Source Files\Engine\Shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -199,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="LightSystem.h">
       <Filter>Source Files\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="RadianceGen.h">
+      <Filter>Source Files\Engine\Shaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

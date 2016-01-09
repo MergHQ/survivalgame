@@ -8,12 +8,18 @@
 #include "Game.h"
 #include "Camera.h"
 
-CGBuffer::CGBuffer()
+CGBuffer::CGBuffer(int w, int h)
 {
 
 	m_pQuadShader = new CShader("data/final.fx");
 
-	glfwGetFramebufferSize(gSys->pWin, &width, &height);
+	if(w != 0 && h != 0)
+	{ 
+		width = w;
+		height = h;
+	}
+	else
+		glfwGetFramebufferSize(gSys->pWin, &width, &height);
 
 	m_frameBuffer = 0;
 	glGenFramebuffers(1, &m_frameBuffer);

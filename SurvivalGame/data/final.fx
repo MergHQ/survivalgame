@@ -5,8 +5,6 @@ layout(location = 0) in vec3 vertexPosition;
 void main()
 {
 	gl_Position = vec4(vertexPosition, 1.0);
-	float tanHalfFov = tan((45/2)*(3.14/180));
-	float aspectRatio = 1280.0/720.0;
 }
 
 @
@@ -37,7 +35,7 @@ uniform int u_height;
 
 vec2 GetUv()
 {
-	return gl_FragCoord.xy/vec2(1920, 1080);
+	return gl_FragCoord.xy/vec2(u_width, u_height);
 }
 
 // Include ssao

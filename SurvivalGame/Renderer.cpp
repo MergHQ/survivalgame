@@ -20,12 +20,14 @@ CRenderer::~CRenderer()
 	delete m_pGBuffer;
 	delete m_pSSAO;
 	delete m_pLightSystem;
+	delete m_radianceGen;
 }
 void CRenderer::InitDependencies()
 {
 	m_pGBuffer = new CGBuffer;
 	m_pSSAO = new CSSAO;
 	m_pLightSystem = new CLightSystem;
+	m_radianceGen = new CRadianceGen;
 }
 
 void CRenderer::Render()

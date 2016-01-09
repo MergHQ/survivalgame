@@ -31,7 +31,7 @@ uniform int u_height;
 
 vec2 GetUv()
 {
-	return gl_FragCoord.xy/vec2(1920,1080);
+	return gl_FragCoord.xy/vec2(u_width, u_height);
 }
 
 void main()

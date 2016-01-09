@@ -6,7 +6,7 @@
 class CGBuffer
 {
 public:
-	CGBuffer();
+	CGBuffer(int w = 0, int h = 0);
 	~CGBuffer();
 
 	void RenderQuad();
