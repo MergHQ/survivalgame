@@ -124,4 +124,7 @@ void CShader::GenerateUniformLocations()
 	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_lightColor"));
 	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_lightPos"));
 	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_lightAtt"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_shR"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_shG"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_shB"));
 }

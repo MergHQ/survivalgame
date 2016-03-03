@@ -117,6 +117,9 @@
     <ClCompile Include="RadianceGen.cpp">
       <Filter>Source Files\Engine\Shaders</Filter>
     </ClCompile>
+    <ClCompile Include="SkyBox.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -205,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="RadianceGen.h">
       <Filter>Source Files\Engine\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBox.h">
+      <Filter>Source Files\Engine\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

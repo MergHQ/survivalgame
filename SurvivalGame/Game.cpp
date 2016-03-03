@@ -17,7 +17,7 @@ void CGame::Init()
 	pCamera = new CCamera;
 
 	pTerrainGen = new CTerrainGen;
-	pTerrainGen->GenerateTerrain(1024, 1024, 2.0, 20.0, 1.0, 30.0);
+	pTerrainGen->GenerateTerrain(1024, 1024, 2.0, 20.0, 1.0, 10.0);
 }
 
 void CGame::Update()

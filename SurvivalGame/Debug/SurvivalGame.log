@@ -1,25 +1,11 @@
-﻿Build started 7.1.2016 22:59:01.
-     1>Project "C:\Users\Hugo\Documents\survivalgame\SurvivalGame\SurvivalGame.vcxproj" on node 2 (Build target(s)).
+﻿Build started 02/03/2016 19:52:52.
+     1>Project "G:\VSProjects\survivalgame\SurvivalGame\SurvivalGame.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SurvivalGame.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_WARNINGS /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Engine.cpp GBuffer.cpp LightSystem.cpp RadianceGen.cpp Renderer.cpp
-         GBuffer.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(130): warning C4005: 'APIENTRY': macro redefinition
-         c:\users\hugo\documents\survivalgame\include\glfw\glfw3.h(85): note: see previous definition of 'APIENTRY'
-     1>c:\users\hugo\documents\survivalgame\survivalgame\gbuffer.cpp(101): warning C4018: '<': signed/unsigned mismatch
-         Generating Code...
-         Compiling...
-         Renderer.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(130): warning C4005: 'APIENTRY': macro redefinition
-         c:\users\hugo\documents\survivalgame\include\glfw\glfw3.h(85): note: see previous definition of 'APIENTRY'
-     1>c:\users\hugo\documents\survivalgame\survivalgame\renderer.cpp(68): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         RadianceGen.cpp
-         LightSystem.cpp
-         Engine.cpp
+         G:\Programs\VS2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_WARNINGS /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Sun.cpp
+         Sun.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Hugo\Documents\survivalgame\Debug\Game.exe" /INCREMENTAL /NOLOGO libnoise.lib glew32.lib glfw3.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Hugo\Documents\survivalgame\Debug\Game.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Hugo\Documents\survivalgame\Debug\Game.lib" /MACHINE:X86 Debug\Camera.obj
+         G:\Programs\VS2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\VSProjects\survivalgame\Debug\Game.exe" /INCREMENTAL /NOLOGO libnoise.lib glew32.lib glfw3.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"G:\VSProjects\survivalgame\Debug\Game.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\VSProjects\survivalgame\Debug\Game.lib" /MACHINE:X86 Debug\Camera.obj
          Debug\FboTexture.obj
          Debug\GBuffer.obj
          Debug\Input.obj
@@ -36,15 +22,16 @@
          Debug\MeshSystem.obj
          Debug\Renderer.obj
          Debug\RenderWindow.obj
+         Debug\SkyBox.obj
          Debug\SSAO.obj
          Debug\StaticMesh.obj
          Debug\Sun.obj
          Debug\TerrainGen.obj
          Debug\Texture.obj
          Debug\tiny_obj_loader.obj
-         SurvivalGame.vcxproj -> C:\Users\Hugo\Documents\survivalgame\Debug\Game.exe
-     1>Done Building Project "C:\Users\Hugo\Documents\survivalgame\SurvivalGame\SurvivalGame.vcxproj" (Build target(s)).
+         SurvivalGame.vcxproj -> G:\VSProjects\survivalgame\Debug\Game.exe
+     1>Done Building Project "G:\VSProjects\survivalgame\SurvivalGame\SurvivalGame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.86
+Time Elapsed 00:00:01.12

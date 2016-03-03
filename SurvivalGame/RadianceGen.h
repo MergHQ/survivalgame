@@ -11,7 +11,7 @@ public:
 	CRadianceGen();
 	~CRadianceGen();
 	bool souldGenerate;
-	float data[6][64 * 64 * 3];
+	BYTE data[6][64 * 64 * 3];
 	glm::mat4x4 shValues_r;
 	glm::mat4x4 shValues_g;
 	glm::mat4x4 shValues_b;

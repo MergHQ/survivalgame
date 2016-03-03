@@ -1,6 +1,9 @@
 /*
 	Simpe trick to pre-compute global illumination diffuse factor with spherical harmonics.
 
+	I am running the SH interator on a separate thread to make regeneration seamless. I am also planning to do some
+	kind of interpolation on the actual sh values to provide a smooth fade between different time of days.
+
 	The speed of the spherical harmonic function is dependent on the size of the environment texture.
 	The sample count ís 6*(w*h) where w is the texture width and h is the texture height. 
 	For example, a 128x128 pixel texture would need 98304 iterations.
@@ -30,133 +33,155 @@
 #include "MeshSystem.h"
 #include <glm\gtc\type_ptr.hpp>
 #include "Shader.h"
+#include <glm\gtc\matrix_transform.hpp>
+#include "lodepng.h"
 
 DWORD WINAPI ShThread(void* arguments)
 {
-	
-	while (gSys->pEngine->pRenderer->GetRadianceGen()->souldGenerate)
+
+	while (true)
 	{
-		float shCoeff[3][9];
-		memset(shCoeff[RED], 0, 9u*sizeof(float));
-		memset(shCoeff[GREEN], 0, 9u*sizeof(float));
-		memset(shCoeff[BLUE], 0, 9u*sizeof(float));
-		float texelSize = 1 / 64;
-		for (UINT32 face = 0; face < 6; face++)
+		if (gSys->pEngine->pRenderer->GetRadianceGen() && gSys->pEngine->pRenderer->GetRadianceGen()->souldGenerate)
 		{
+			float shCoeff[3][9];
+			memset(shCoeff[RED], 0, 9u*sizeof(float));
+			memset(shCoeff[GREEN], 0, 9u*sizeof(float));
+			memset(shCoeff[BLUE], 0, 9u*sizeof(float));
+
+			int texRes = 64;
+			float texelSize = 1.0f / float(texRes);
+			float dColor = 1.0f / float((sizeof(unsigned char) << 8) - 1);   
+
+			const int nc = 3;
+
 			float sumWeight = 0.0f;
-			float u, v;
-			for (int x = 0; x < 64; x++)
+			for (int face = 0; face < 6; ++face)
 			{
-				v = 2.0f * ((x + 0.5f) * texelSize) - 1;
-				for (int y = 0; y < 64; y++)
+				float u, v;
+				unsigned char *pixels = gSys->pEngine->pRenderer->GetRadianceGen()->data[face];
+
+				for (int i = 0; i < texRes; ++i)
 				{
-					u = 2.0f * ((y + 0.5f) * texelSize) - 1.0f;
-					float r = gSys->pEngine->pRenderer->GetRadianceGen()->data[face][x*y];
-					float g = gSys->pEngine->pRenderer->GetRadianceGen()->data[face][x*y+1];
-					float b = gSys->pEngine->pRenderer->GetRadianceGen()->data[face][x*y+2];
-					
+					v = 2.0f * ((i + 0.5f) * texelSize) - 1.0f;
 
-					Vec3 dir; float solidAngle;
-					gSys->pEngine->pRenderer->GetRadianceGen()->GetTexelAttrib(face, u, v, texelSize, &dir, &solidAngle);
-					sumWeight += solidAngle;
+					for (int j = 0; j < texRes; ++j)
+					{
+						u = 2.0f * ((j + 0.5f) * texelSize) - 1.0f;
 
-					// Integration of formula 10
+						glm::vec3 dir; float solidAngle;
+						gSys->pEngine->pRenderer->GetRadianceGen()->GetTexelAttrib(face, u, v, texelSize, &dir, &solidAngle);
+						sumWeight += solidAngle;
 
-					float theta;
-					// Add coefficients to the matrix.
-					theta = r * solidAngle;
-					shCoeff[RED][0] += theta * Y0(dir);
-					shCoeff[RED][1] += theta * Y1(dir);
-					shCoeff[RED][2] += theta * Y2(dir);
-					shCoeff[RED][3] += theta * Y3(dir);
-					shCoeff[RED][4] += theta * Y4(dir);
-					shCoeff[RED][5] += theta * Y5(dir);
-					shCoeff[RED][6] += theta * Y6(dir);
-					shCoeff[RED][7] += theta * Y7(dir);
-					shCoeff[RED][8] += theta * Y8(dir);
+						float lambda;
 
-					theta = g * solidAngle;
-					shCoeff[GREEN][0] += theta * Y0(dir);
-					shCoeff[GREEN][1] += theta * Y1(dir);
-					shCoeff[GREEN][2] += theta * Y2(dir);
-					shCoeff[GREEN][3] += theta * Y3(dir);
-					shCoeff[GREEN][4] += theta * Y4(dir);
-					shCoeff[GREEN][5] += theta * Y5(dir);
-					shCoeff[GREEN][6] += theta * Y6(dir);
-					shCoeff[GREEN][7] += theta * Y7(dir);
-					shCoeff[GREEN][8] += theta * Y8(dir);
+						lambda = (pixels[RED] * dColor) * solidAngle;
+						shCoeff[RED][0] += lambda * Y0(dir);
+						shCoeff[RED][1] += lambda * Y1(dir);
+						shCoeff[RED][2] += lambda * Y2(dir);
+						shCoeff[RED][3] += lambda * Y3(dir);
+						shCoeff[RED][4] += lambda * Y4(dir);
+						shCoeff[RED][5] += lambda * Y5(dir);
+						shCoeff[RED][6] += lambda * Y6(dir);
+						shCoeff[RED][7] += lambda * Y7(dir);
+						shCoeff[RED][8] += lambda * Y8(dir);
 
-					theta = b * solidAngle;
-					shCoeff[BLUE][0] += theta * Y0(dir);
-					shCoeff[BLUE][1] += theta * Y1(dir);
-					shCoeff[BLUE][2] += theta * Y2(dir);
-					shCoeff[BLUE][3] += theta * Y3(dir);
-					shCoeff[BLUE][4] += theta * Y4(dir);
-					shCoeff[BLUE][5] += theta * Y5(dir);
-					shCoeff[BLUE][6] += theta * Y6(dir);
-					shCoeff[BLUE][7] += theta * Y7(dir);
-					shCoeff[BLUE][8] += theta * Y8(dir);
+						lambda = (pixels[GREEN] * dColor) * solidAngle;
+						shCoeff[GREEN][0] += lambda * Y0(dir);
+						shCoeff[GREEN][1] += lambda * Y1(dir);
+						shCoeff[GREEN][2] += lambda * Y2(dir);
+						shCoeff[GREEN][3] += lambda * Y3(dir);
+						shCoeff[GREEN][4] += lambda * Y4(dir);
+						shCoeff[GREEN][5] += lambda * Y5(dir);
+						shCoeff[GREEN][6] += lambda * Y6(dir);
+						shCoeff[GREEN][7] += lambda * Y7(dir);
+						shCoeff[GREEN][8] += lambda * Y8(dir);
+
+						lambda = (pixels[BLUE] * dColor) * solidAngle;
+						shCoeff[BLUE][0] += lambda * Y0(dir);
+						shCoeff[BLUE][1] += lambda * Y1(dir);
+						shCoeff[BLUE][2] += lambda * Y2(dir);
+						shCoeff[BLUE][3] += lambda * Y3(dir);
+						shCoeff[BLUE][4] += lambda * Y4(dir);
+						shCoeff[BLUE][5] += lambda * Y5(dir);
+						shCoeff[BLUE][6] += lambda * Y6(dir);
+						shCoeff[BLUE][7] += lambda * Y7(dir);
+						shCoeff[BLUE][8] += lambda * Y8(dir);
+
+						pixels += nc;
+					}
 				}
+
+				const float domega = 2.0f * 3.14f / sumWeight;
+				for (int i = 0; i < 9; ++i)
+				{
+					shCoeff[RED][i] *= domega;
+					shCoeff[GREEN][i] *= domega;
+					shCoeff[BLUE][i] *= domega;
+				}
+
+				const float c1 = 0.429043f;
+				const float c2 = 0.511664f;
+				const float c3 = 0.743125f;
+				const float c4 = 0.886227f;
+				const float c5 = 0.247708f;
+
+				glm::mat4 M[3];
+
+				for (int c = 0; c < 3; ++c)
+				{
+					M[c][0][0] = c1 * shCoeff[c][8];
+					M[c][0][1] = c1 * shCoeff[c][4];
+					M[c][0][2] = c1 * shCoeff[c][7];
+					M[c][0][3] = c2 * shCoeff[c][3];
+
+					M[c][1][0] = c1 * shCoeff[c][4];
+					M[c][1][1] = -c1 * shCoeff[c][8];
+					M[c][1][2] = c1 * shCoeff[c][5];
+					M[c][1][3] = c2 * shCoeff[c][1];
+
+					M[c][2][0] = c1 * shCoeff[c][7];
+					M[c][2][1] = c1 * shCoeff[c][5];
+					M[c][2][2] = c3 * shCoeff[c][6];
+					M[c][2][3] = c2 * shCoeff[c][2];
+
+					M[c][3][0] = c2 * shCoeff[c][3];
+					M[c][3][1] = c2 * shCoeff[c][1];
+					M[c][3][2] = c2 * shCoeff[c][2];
+					M[c][3][3] = c4 * shCoeff[c][0] - c5 * shCoeff[c][6];
+				}
+
+				auto rg = gSys->pEngine->pRenderer->GetRadianceGen();
+				rg->shValues_r = M[0];
+				rg->shValues_g = M[1];
+				rg->shValues_b = M[2];
+				gSys->Log("Generated face sh", nullptr);
 			}
 
-			const float domega = 2.0f * 3.14 / sumWeight;
-			for (int i = 0; i < 9; ++i)
-			{
-				shCoeff[RED][i] *= domega;
-				shCoeff[GREEN][i] *= domega;
-				shCoeff[BLUE][i] *= domega;
-			}
-
-			const float c1 = 0.429043f;
-			const float c2 = 0.511664f;
-			const float c3 = 0.743125f;
-			const float c4 = 0.886227f;
-			const float c5 = 0.247708f;
-
-			glm::mat4 M[3];
-
-			for (int c = 0; c<3; ++c)
-			{
-				M[c][0][0] = c1 * shCoeff[c][8];
-				M[c][0][1] = c1 * shCoeff[c][4];
-				M[c][0][2] = c1 * shCoeff[c][7];
-				M[c][0][3] = c2 * shCoeff[c][3];
-
-				M[c][1][0] = c1 * shCoeff[c][4];
-				M[c][1][1] = -c1 * shCoeff[c][8];
-				M[c][1][2] = c1 * shCoeff[c][5];
-				M[c][1][3] = c2 * shCoeff[c][1];
-
-				M[c][2][0] = c1 * shCoeff[c][7];
-				M[c][2][1] = c1 * shCoeff[c][5];
-				M[c][2][2] = c3 * shCoeff[c][6];
-				M[c][2][3] = c2 * shCoeff[c][2];
-
-				M[c][3][0] = c2 * shCoeff[c][3];
-				M[c][3][1] = c2 * shCoeff[c][1];
-				M[c][3][2] = c2 * shCoeff[c][2];
-				M[c][3][3] = c4 * shCoeff[c][0] - c5 * shCoeff[c][6];
-			}
-
-			auto rg = gSys->pEngine->pRenderer->GetRadianceGen();
-			rg->shValues_r = M[0];
-			rg->shValues_r = M[1];
-			rg->shValues_r = M[2];
+			gSys->pEngine->pRenderer->GetRadianceGen()->souldGenerate = false;
 		}
-
-		gSys->pEngine->pRenderer->GetRadianceGen()->souldGenerate = false;
 	}
 	return 0;
 }
 
 void CRadianceGen::Render()
 {
-	m_pGBuffer->Begin();
+	Vec3 pos = Vec3(0, 30.f, 0);
+	glm::mat4 views[6] = {
+		glm::lookAt(pos, pos+glm::vec3(1,0,0),glm::vec3(0,-1,0)),
+		glm::lookAt(pos, pos+glm::vec3(-1,0,0),glm::vec3(0,-1,0)),
+		glm::lookAt(pos, pos+glm::vec3(0,1,0),glm::vec3(0,0,1)),
+		glm::lookAt(pos, pos+glm::vec3(0,-1,0),glm::vec3(0,0,-1)),
+		glm::lookAt(pos, pos+glm::vec3(0,0,1),glm::vec3(0,-1,0)),
+		glm::lookAt(pos, pos+glm::vec3(0,0,-1),glm::vec3(0,-1,0))
+	};
+	glm::mat4 p = glm::perspective(90.f, (float)m_pGBuffer->width / (float)m_pGBuffer->height, 0.1f, 1000.0f);
 	for (int i = 0; i < 6; i++)
 	{
+		m_pGBuffer->Begin();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(1, 1, 1, 1);
 		m_pGBuffer->MeshPass();
-		glm::mat4 v = gSys->pGame->pCamera->GetViewMatrix();
-		glm::mat4 p = gSys->pGame->pCamera->GetProjectionMatrix();
+
 		for (std::pair<unsigned int, IMesh*> it : gSys->pEngine->pMeshSystem->GetMeshContainer())
 		{
 			IMesh* pMesh = it.second;
@@ -164,7 +189,7 @@ void CRadianceGen::Render()
 			glUseProgram(pMesh->GetShader()->GetProgramId());
 
 			glUniformMatrix4fv(pMesh->GetShader()->GetUniforms()[MODELMAT], 1, GL_FALSE, glm::value_ptr(pMesh->GetModelMatrix()));
-			glUniformMatrix4fv(pMesh->GetShader()->GetUniforms()[VIEWMAT], 1, GL_FALSE, glm::value_ptr(v));
+			glUniformMatrix4fv(pMesh->GetShader()->GetUniforms()[VIEWMAT], 1, GL_FALSE, glm::value_ptr(views[i]));
 			glUniformMatrix4fv(pMesh->GetShader()->GetUniforms()[PROJMAT], 1, GL_FALSE, glm::value_ptr(p));
 			glUniformMatrix4fv(pMesh->GetShader()->GetUniforms()[OBJ2WORLD], 1, GL_FALSE, glm::value_ptr(pMesh->GetModelMatrix()));
 
@@ -173,10 +198,12 @@ void CRadianceGen::Render()
 
 			glDrawElements(GL_TRIANGLES, pMesh->GetIndexCount() * sizeof(uint32_t), GL_UNSIGNED_INT, 0);
 		}
+		gSys->pEngine->pRenderer->GetSkybox()->Draw();
 		m_pGBuffer->RenderQuad();
-		glReadPixels(0, 0, m_pGBuffer->width, m_pGBuffer->height, GL_RGB, GL_FLOAT, data[i]);
+		glPixelStorei(GL_PACK_ALIGNMENT, 1);
+		glReadPixels(0, 0, m_pGBuffer->width, m_pGBuffer->height, GL_RGB, GL_UNSIGNED_BYTE, data[i]);
 	}
-	
+	souldGenerate = true;
 }
 
 void CRadianceGen::GetTexelAttrib(const int texId, const float u, const float v, const float texelSize,
@@ -190,7 +217,7 @@ void CRadianceGen::GetTexelAttrib(const int texId, const float u, const float v,
 	};
 
 
-	/// Compute the texel direction  
+	// Compute the texel direction  
 	switch (texId)
 	{
 	case POSITIVE_X:
@@ -234,7 +261,7 @@ CRadianceGen::CRadianceGen()
 {
 	souldGenerate = false;
 	m_shThread = CreateThread(nullptr, 0, ShThread, 0, 0, nullptr);
-	m_pGBuffer = new CGBuffer(64, 64);
+	m_pGBuffer = new CGBuffer(64, 64, "data/radiance_final.fx");
 }
 
 CRadianceGen::~CRadianceGen()

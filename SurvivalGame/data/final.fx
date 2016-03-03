@@ -33,6 +33,10 @@ uniform vec3 u_lightPos;
 uniform int u_width;
 uniform int u_height;
 
+uniform mat4 u_shR;
+uniform mat4 u_shG;
+uniform mat4 u_shB;
+
 vec2 GetUv()
 {
 	return gl_FragCoord.xy/vec2(u_width, u_height);
@@ -40,6 +44,19 @@ vec2 GetUv()
 
 // Include ssao
 $data/ssao.fx$
+
+vec4 radiance(vec3 normal)
+{
+	vec4 final;
+	vec4 castedNormal = normalize(vec4(normal, 1));
+
+	final.r = clamp(dot(castedNormal, u_shR * castedNormal),0.0,1.0);
+	final.g = clamp(dot(castedNormal, u_shG* castedNormal),0.0,1.0);
+	final.b = clamp(dot(castedNormal, u_shB * castedNormal),0.0,1.0);
+	final.a = 1;
+
+	return final;
+}
 
 void main()
 {
@@ -53,8 +70,11 @@ void main()
 	vec4 diffuse = vec4(0);
 	if(NdotL > 0.0)
 		diffuse = vec4(u_lightColor*NdotL, 1);
-	if(texture(u_gViewPosDepth,uv).w != 420)
-		color = texture(u_gColor, uv) * (diffuse + vec4(0.2)) + texture(u_gLightTexture, uv) * AmbientOcclusion(uv);
-	else
+	if(texture(u_gViewPosDepth,uv).w == 420)
 		color = texture(u_gColor, uv) * (diffuse + vec4(0.2)) + texture(u_gLightTexture, uv);
+	else if(texture(u_gViewPosDepth,uv).w == 69)
+		color = texture(u_gColor, uv); 
+	else
+		color = texture(u_gColor, uv) * (diffuse +  radiance(normal)) + texture(u_gLightTexture, uv) * AmbientOcclusion(uv);
+
 }

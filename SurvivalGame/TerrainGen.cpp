@@ -70,7 +70,9 @@ void CTerrainGen::GenerateTerrain(int x, int y, float lxb, float uxb, float lyb,
 				if (height > 4.f && height < 19.f)
 				{
 					auto a = gSys->pEngine->pMeshSystem->CreateMesh("data/test_tree.obj", "data/basic.fx", SMeshData(), "data/untitled.png");
+					auto b = gSys->pEngine->pMeshSystem->CreateMesh("data/sphere.obj", "data/basic.fx", SMeshData(), "data/untitled.png");
 					a->SetPosition(Vec3(i - x / 2, m_heightMap.GetValue(i, j) * uyb + 1, j - x / 2));
+					b->SetPosition(Vec3(i - x / 2, m_heightMap.GetValue(i, j) * uyb + 10, j - x / 2));
 				}
 			}
 
@@ -105,7 +107,7 @@ void CTerrainGen::GenerateTerrain(int x, int y, float lxb, float uxb, float lyb,
 	data.positions = positions;
 	data.texcoord = texcoords;
 	gSys->pEngine->pMeshSystem->CreateMesh("", "data/terrain.fx", data);
-	CreateWater();
+	//CreateWater();
 }
 
 float CTerrainGen::GetTerrainHeight(int x, int y)

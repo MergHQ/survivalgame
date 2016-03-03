@@ -11,27 +11,32 @@
 #include <glm\gtc\type_ptr.hpp>
 #include "PointLight.h"
 
-CRenderer::CRenderer()
-{
-}
-
 CRenderer::~CRenderer()
 {
 	delete m_pGBuffer;
 	delete m_pSSAO;
 	delete m_pLightSystem;
 	delete m_radianceGen;
+	delete m_pSkybox;
 }
+bool a = true;
 void CRenderer::InitDependencies()
 {
 	m_pGBuffer = new CGBuffer;
 	m_pSSAO = new CSSAO;
 	m_pLightSystem = new CLightSystem;
 	m_radianceGen = new CRadianceGen;
+	m_pSkybox = new CSkyBox;
+
 }
 
 void CRenderer::Render()
 {
+	if (a)
+	{
+		m_radianceGen->Render();
+		a = false;
+	}
 	m_pGBuffer->Begin();
 	ClearFrame();
 	MeshPass();
@@ -60,10 +65,11 @@ void CRenderer::MeshPass()
 
 		glDrawElements(GL_TRIANGLES, pMesh->GetIndexCount() * sizeof(uint32_t), GL_UNSIGNED_INT, 0);
 	}
+	m_pSkybox->Draw();
 }
 
 void CRenderer::ClearFrame()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.5,0.5,0.8,1);
+	glClearColor(1,1,1,1);
 }

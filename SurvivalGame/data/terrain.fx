@@ -59,9 +59,9 @@ void main()
 	gViewNormal.xyz = normalize(v_fragNormal);
 
 	if(v_pos.y < 3+sin(v_normal.y) * 5)
-		gColor = vec4(0.7,0.5,0.4,1);
+		gColor = vec4(0.9,0.7,0.4,1);
 	else if(v_pos.y < 20+sin(v_normal.y) * 5)
-		gColor = vec4(0.4,0.5,0.2,1);
+		gColor = /*vec4(0.4,0.5,0.2,1)*/vec4(0.7,0.5,0.4,1);
 	else
-		gColor = vec4(1);
+		gColor = vec4(0.7,0.5,0.4,1);
 }

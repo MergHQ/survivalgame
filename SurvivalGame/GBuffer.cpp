@@ -7,11 +7,12 @@
 #include "SSAO.h"
 #include "Game.h"
 #include "Camera.h"
+#include <glm\gtc\type_ptr.hpp>
 
-CGBuffer::CGBuffer(int w, int h)
+CGBuffer::CGBuffer(int w, int h, std::string shader)
 {
 
-	m_pQuadShader = new CShader("data/final.fx");
+	m_pQuadShader = new CShader(shader);
 
 	if(w != 0 && h != 0)
 	{ 
@@ -38,7 +39,7 @@ CGBuffer::CGBuffer(int w, int h)
 	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	if (status != GL_FRAMEBUFFER_COMPLETE)
 	{
-		gSys->Log("Failed creating framebuffer.",this);
+		gSys->Log("Failed to create framebuffer.",this);
 	}
 
 	CreateQuad();
@@ -117,6 +118,10 @@ void CGBuffer::RenderQuad()
 	glUniform3f(m_pQuadShader->GetUniforms()[LIGHTPOS], sun->GetLightPosition().x, sun->GetLightPosition().y, sun->GetLightPosition().z);
 	glm::vec3 color = sun->GetSetLightColor(glm::vec3(), false);
 	glUniform3f(m_pQuadShader->GetUniforms()[LIGHTCOLOR], color.x, color.y, color.z);
+
+	glUniformMatrix4fv(m_pQuadShader->GetUniforms()[SHR], 1, GL_FALSE, glm::value_ptr(gSys->pEngine->pRenderer->GetRadianceGen()->shValues_r));
+	glUniformMatrix4fv(m_pQuadShader->GetUniforms()[SHG], 1, GL_FALSE, glm::value_ptr(gSys->pEngine->pRenderer->GetRadianceGen()->shValues_g));
+	glUniformMatrix4fv(m_pQuadShader->GetUniforms()[SHB], 1, GL_FALSE, glm::value_ptr(gSys->pEngine->pRenderer->GetRadianceGen()->shValues_b));
 
 	glBindVertexArray(m_quadVao);
 	glDrawElements(GL_TRIANGLES, m_indices * sizeof(uint32_t), GL_UNSIGNED_INT, 0);
