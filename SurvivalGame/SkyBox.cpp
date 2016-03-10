@@ -11,7 +11,7 @@
 
 CSkyBox::CSkyBox()
 {
-	m_pMesh = new CStaticMesh("data/skybox.obj", "data/skybox.fx", "data/blue.png");
+	m_pMesh = new CStaticMesh("data/skybox.obj", "data/skybox.fx", "data/blue.png", 120);
 }
 
 CSkyBox::~CSkyBox()

@@ -161,6 +161,7 @@
     <ClCompile Include="LightSystem.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="noiseutils.cpp" />
+    <ClCompile Include="Pipeline.cc" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="RadianceGen.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -210,6 +211,35 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="tiny_obj_loader.h" />
     <ClInclude Include="Utils.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\basic.fx">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="data\final.fx">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="data\null.fx">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="data\pointlight.fx">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="data\radiance_final.fx">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="data\skybox.fx">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="data\ssao.fx">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="data\terrain.fx">
+      <FileType>Document</FileType>
+    </Text>
+    <Text Include="data\water.fx">
+      <FileType>Document</FileType>
+    </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

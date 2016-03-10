@@ -9,6 +9,7 @@
 #include "Game.h"
 #include "Camera.h"
 #include <glm\gtc\type_ptr.hpp>
+#include "Pipeline.cc"
 #include "PointLight.h"
 
 CRenderer::~CRenderer()
@@ -52,8 +53,7 @@ void CRenderer::MeshPass()
 	for (std::pair<unsigned int, IMesh*> it : gSys->pEngine->pMeshSystem->GetMeshContainer())
 	{
 		IMesh* pMesh = it.second;
-		glBindVertexArray(pMesh->GetVertexArray());
-		glUseProgram(pMesh->GetShader()->GetProgramId());
+		Pipeline::draw_begin(pMesh->GetVertexArray(), pMesh->GetShader()->GetProgramId());
 
 		glUniformMatrix4fv(pMesh->GetShader()->GetUniforms()[MODELMAT], 1, GL_FALSE, glm::value_ptr(pMesh->GetModelMatrix()));
 		glUniformMatrix4fv(pMesh->GetShader()->GetUniforms()[VIEWMAT], 1, GL_FALSE, glm::value_ptr(v));
@@ -63,7 +63,7 @@ void CRenderer::MeshPass()
 		if (pMesh->GetTexture() != nullptr)
 			pMesh->GetTexture()->ActivateTexture(GL_TEXTURE10, pMesh->GetShader()->GetUniforms()[TEXTURESAMPLER]);
 
-		glDrawElements(GL_TRIANGLES, pMesh->GetIndexCount() * sizeof(uint32_t), GL_UNSIGNED_INT, 0);
+		Pipeline::draw_end(pMesh->GetIndexCount(), GL_TRIANGLES);
 	}
 	m_pSkybox->Draw();
 }

@@ -43,7 +43,7 @@ void CCamera::Update(float dt, GLFWwindow* pWin)
 	if (m_forward != m_backwards || m_right != m_left)
 		move(pWin, dt);
 
-	//m_cameraPos.y = gSys->pGame->pTerrainGen->GetTerrainHeight((int)m_cameraPos.x, (int)m_cameraPos.z)+1.8f;
+	m_cameraPos.y = gSys->pGame->pTerrainGen->GetTerrainHeight((int)m_cameraPos.x, (int)m_cameraPos.z)+1.8f;
 
 	// Construct View Matrix
 	m_vmatrix = glm::lookAt(m_cameraPos, m_cameraPos + m_direction, Vec3(0, 1, 0));

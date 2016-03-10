@@ -7,7 +7,7 @@
 class CStaticMesh : public IMesh
 {
 public:
-	CStaticMesh(std::string name, std::string shader, std::string texture, SMeshData& data = SMeshData());
+	CStaticMesh(std::string name, std::string shader, std::string texture, unsigned int id, SMeshData& data = SMeshData());
 	~CStaticMesh();
 
 	// IMesh

@@ -10,13 +10,21 @@
 #include <glm\geometric.hpp>
 #include <random>
 
-
 CTerrainGen::CTerrainGen()
 {
 }
 
 CTerrainGen::~CTerrainGen()
 {
+	delete m_heights;
+}
+
+template <class T>
+static void AllocArray(T**& a, size_t s)
+{
+	a = new T*[s];
+	for (int i = 0; i < s; ++i)
+		a[i] = new T[s];
 }
 
 void CTerrainGen::GenerateTerrain(int x, int y, float lxb, float uxb, float lyb, float uyb)
@@ -25,6 +33,8 @@ void CTerrainGen::GenerateTerrain(int x, int y, float lxb, float uxb, float lyb,
 	std::vector<float> normals;
 	std::vector<unsigned int> indices;
 	std::vector<float> texcoords;
+
+	AllocArray(m_heights, x);
 
 	m_ubound = uyb;
 	width = x;
@@ -52,6 +62,8 @@ void CTerrainGen::GenerateTerrain(int x, int y, float lxb, float uxb, float lyb,
 			positions.push_back(m_heightMap.GetValue(i, j) * uyb);
 			positions.push_back(j - x / 2);
 
+			m_heights[(int)i][(int)j] = m_heightMap.GetValue(i, j) * uyb;
+
 			Vec2 p = Vec2(i, j);
 			float hl = m_heightMap.GetValue(p.x - 1, p.y) * uyb;
 			float hr = m_heightMap.GetValue(p.x + 1, p.y) * uyb;
@@ -69,9 +81,7 @@ void CTerrainGen::GenerateTerrain(int x, int y, float lxb, float uxb, float lyb,
 				float height = m_heightMap.GetValue(i, j) * uyb + 1;
 				if (height > 4.f && height < 19.f)
 				{
-					auto a = gSys->pEngine->pMeshSystem->CreateMesh("data/test_tree.obj", "data/basic.fx", SMeshData(), "data/untitled.png");
 					auto b = gSys->pEngine->pMeshSystem->CreateMesh("data/sphere.obj", "data/basic.fx", SMeshData(), "data/untitled.png");
-					a->SetPosition(Vec3(i - x / 2, m_heightMap.GetValue(i, j) * uyb + 1, j - x / 2));
 					b->SetPosition(Vec3(i - x / 2, m_heightMap.GetValue(i, j) * uyb + 10, j - x / 2));
 				}
 			}
@@ -112,30 +122,36 @@ void CTerrainGen::GenerateTerrain(int x, int y, float lxb, float uxb, float lyb,
 
 float CTerrainGen::GetTerrainHeight(int x, int y)
 {
-	//float terrainX = x + width / 2;
-	//float terrainZ = y + height / 2;
-	//float gridSquareSize = m_heightMap.GetWidth() / ((float)m_heightMap.GetWidth() - 1);
-	//int gridX = (int)floor(terrainX / gridSquareSize);
-	//int gridZ = (int)floor(terrainZ / gridSquareSize);
-	//if (gridX >= m_heightMap.GetWidth() - 1 || gridZ >= m_heightMap.GetWidth() - 1 || gridX < 0 || gridZ < 0)
-	//{
-	//	return 0;
-	//}
-	//float xCoord = glm::modf(terrainX, gridSquareSize) / gridSquareSize;
-	//float zCoord = glm::modf(terrainZ, gridSquareSize) / gridSquareSize;
-	//float answer;
-	//if (xCoord <= (1 - zCoord))
-	//{
-	//	barryCentric(
-	//		Vec3(0, m_heightMap.GetHeight(gridX, gridZ), 0),
-	//		Vec3(m_heightsX[gridX], m_heightsZ[gridZ+1], 0), 
-	//		Vec3(0, m_heightsX[gridX][gridZ + 1], 1),
-	//		new Vector2f(xCoord, zCoord));
-	//}
-	//else
-	//{
-
-	//}
+	float terrainX = x + width / 2;
+	float terrainZ = y + height / 2;
+	float gridSquareSize = m_heightMap.GetWidth() / ((float)m_heightMap.GetWidth() - 1);
+	int gridX = (int)floor(terrainX / gridSquareSize);
+	int gridZ = (int)floor(terrainZ / gridSquareSize);
+	if (gridX >= m_heightMap.GetWidth() - 1 || gridZ >= m_heightMap.GetWidth() - 1 || gridX < 0 || gridZ < 0)
+	{
+		return 0;
+	}
+	float xCoord = glm::modf(terrainX, gridSquareSize) / gridSquareSize;
+	float zCoord = glm::modf(terrainZ, gridSquareSize) / gridSquareSize;
+	float answer;
+	if (xCoord <= (1 - zCoord))
+	{
+		barryCentric(
+			Vec3(0, m_heights[gridX][gridZ], 0), 
+			Vec3(1, m_heights[gridX + 1][gridZ], 0),
+			Vec3(0,m_heights[gridX][gridZ + 1], 1), 
+			Vec3(xCoord, zCoord,0)
+			);
+	}
+	else
+	{
+		barryCentric(
+			Vec3(1, m_heights[gridX + 1][gridZ], 0),
+			Vec3(1, m_heights[gridX + 1][gridZ + 1], 1),
+			Vec3(0 , m_heights[gridX][gridZ + 1], 1),
+			Vec3(xCoord, zCoord, 0)
+			);
+	}
 	return m_heightMap.GetValue(x+width/2, y+height/2) * m_ubound;
 }
 
@@ -150,7 +166,7 @@ void CTerrainGen::CreateWater()
 	gSys->pEngine->pMeshSystem->CreateMesh("", "data/water.fx", data);
 }
 
-inline float barryCentric(Vec3 p1, Vec3 p2, Vec3 p3, Vec3 pos) 
+float CTerrainGen::barryCentric(glm::vec3 p1, glm::vec3  p2, glm::vec3  p3, glm::vec3  pos)
 {
 	float det = (p2.z - p3.z) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.z - p3.z);
 	float l1 = ((p2.z - p3.z) * (pos.x - p3.x) + (p3.x - p2.x) * (pos.y - p3.z)) / det;

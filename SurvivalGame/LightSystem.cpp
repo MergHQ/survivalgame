@@ -15,7 +15,7 @@ CLightSystem::CLightSystem()
 {
 	m_pSun = new CSun;
 	m_pNullShader = new CShader("data/null.fx");
-	lightSphere = new CStaticMesh("data/sphere.obj", "data/pointlight.fx", "");
+	lightSphere = new CStaticMesh("data/sphere.obj", "data/pointlight.fx", "", 100);
 }
 
 CLightSystem::~CLightSystem()

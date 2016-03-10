@@ -157,7 +157,8 @@ DWORD WINAPI ShThread(void* arguments)
 				gSys->Log("Generated face sh", nullptr);
 			}
 
-			gSys->pEngine->pRenderer->GetRadianceGen()->souldGenerate = false;
+			Sleep(10000);
+
 		}
 	}
 	return 0;

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "Engine.h"
 #include "Input.h"
+#include "Renderer.h"
 
 SGlobalSystem* gSys;
 

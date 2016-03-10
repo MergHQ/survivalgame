@@ -1,10 +1,7 @@
-﻿Build started 02/03/2016 19:52:52.
+﻿Build started 10/03/2016 22:07:09.
      1>Project "G:\VSProjects\survivalgame\SurvivalGame\SurvivalGame.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SurvivalGame.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-     1>ClCompile:
-         G:\Programs\VS2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CRT_SECURE_NO_WARNINGS /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Sun.cpp
-         Sun.cpp
-       Link:
+     1>Link:
          G:\Programs\VS2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\VSProjects\survivalgame\Debug\Game.exe" /INCREMENTAL /NOLOGO libnoise.lib glew32.lib glfw3.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"G:\VSProjects\survivalgame\Debug\Game.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\VSProjects\survivalgame\Debug\Game.lib" /MACHINE:X86 Debug\Camera.obj
          Debug\FboTexture.obj
          Debug\GBuffer.obj
@@ -12,6 +9,7 @@
          Debug\LightSystem.obj
          Debug\lodepng.obj
          Debug\noiseutils.obj
+         Debug\Pipeline.obj
          Debug\PointLight.obj
          Debug\RadianceGen.obj
          Debug\Shader.obj
@@ -29,9 +27,21 @@
          Debug\TerrainGen.obj
          Debug\Texture.obj
          Debug\tiny_obj_loader.obj
+     1>glfw3.lib(context.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(context.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(init.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(init.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(input.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(input.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(monitor.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(monitor.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(wgl_context.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(wgl_context.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_init.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_init.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_monitor.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_monitor.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_time.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_time.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_tls.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_tls.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_window.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_window.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(window.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(window.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(winmm_joystick.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(winmm_joystick.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
          SurvivalGame.vcxproj -> G:\VSProjects\survivalgame\Debug\Game.exe
      1>Done Building Project "G:\VSProjects\survivalgame\SurvivalGame\SurvivalGame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.12
+Time Elapsed 00:00:00.69

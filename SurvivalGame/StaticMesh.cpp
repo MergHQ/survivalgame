@@ -6,10 +6,11 @@
 #include "ITexture.h"
 #include "Texture.h"
 
-CStaticMesh::CStaticMesh(std::string file, std::string shader, std::string texture, SMeshData& data)
+CStaticMesh::CStaticMesh(std::string file, std::string shader, std::string texture, unsigned int id, SMeshData& data)
 {
 	tinyobj::mesh_t shape;
 	tinyobj::mesh_t* shapePtr;
+	m_meshId = id;
 	GLuint vbo = 0, indicies = 0, normals = 0, texcoords = 0;
 	bool shouldLoad = true;
 

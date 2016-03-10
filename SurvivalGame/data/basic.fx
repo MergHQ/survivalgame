@@ -63,5 +63,5 @@ void main()
 	gDepthPos.w = LinearizeDepth(gl_FragCoord.z);
 	gViewNormal.xyz = normalize(v_fragNormal);
 
-	gColor = vec4(1);
+	gColor = texture(u_texSampler, v_texCoord);
 }

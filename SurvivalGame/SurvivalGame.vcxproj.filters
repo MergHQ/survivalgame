@@ -46,6 +46,9 @@
     <Filter Include="Source Files\Engine\Environment">
       <UniqueIdentifier>{7bfc8ee5-e196-4bef-bfcb-aa95d0bb4204}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Shaders\src">
+      <UniqueIdentifier>{3aac6188-8d4d-460e-bb88-00b4111d89df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -119,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="SkyBox.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipeline.cc">
+      <Filter>Source Files\Engine\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,5 +218,34 @@
     <ClInclude Include="SkyBox.h">
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\basic.fx">
+      <Filter>Source Files\Engine\Shaders\src</Filter>
+    </Text>
+    <Text Include="data\final.fx">
+      <Filter>Source Files\Engine\Shaders\src</Filter>
+    </Text>
+    <Text Include="data\null.fx">
+      <Filter>Source Files\Engine\Shaders\src</Filter>
+    </Text>
+    <Text Include="data\pointlight.fx">
+      <Filter>Source Files\Engine\Shaders\src</Filter>
+    </Text>
+    <Text Include="data\radiance_final.fx">
+      <Filter>Source Files\Engine\Shaders\src</Filter>
+    </Text>
+    <Text Include="data\skybox.fx">
+      <Filter>Source Files\Engine\Shaders\src</Filter>
+    </Text>
+    <Text Include="data\ssao.fx">
+      <Filter>Source Files\Engine\Shaders\src</Filter>
+    </Text>
+    <Text Include="data\terrain.fx">
+      <Filter>Source Files\Engine\Shaders\src</Filter>
+    </Text>
+    <Text Include="data\water.fx">
+      <Filter>Source Files\Engine\Shaders\src</Filter>
+    </Text>
   </ItemGroup>
 </Project>

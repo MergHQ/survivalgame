@@ -7,6 +7,7 @@
 #include "SSAO.h"
 #include "Game.h"
 #include "Camera.h"
+#include "Pipeline.cc"
 #include <glm\gtc\type_ptr.hpp>
 
 CGBuffer::CGBuffer(int w, int h, std::string shader)

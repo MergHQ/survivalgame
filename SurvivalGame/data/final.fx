@@ -50,9 +50,9 @@ vec4 radiance(vec3 normal)
 	vec4 final;
 	vec4 castedNormal = normalize(vec4(normal, 1));
 
-	final.r = clamp(dot(castedNormal, u_shR * castedNormal),0.0,1.0);
-	final.g = clamp(dot(castedNormal, u_shG* castedNormal),0.0,1.0);
-	final.b = clamp(dot(castedNormal, u_shB * castedNormal),0.0,1.0);
+	final.r = dot(castedNormal, u_shR * castedNormal);
+	final.g = dot(castedNormal, u_shG* castedNormal);
+	final.b = dot(castedNormal, u_shB * castedNormal);
 	final.a = 1;
 
 	return final;
@@ -74,7 +74,9 @@ void main()
 		color = texture(u_gColor, uv) * (diffuse + vec4(0.2)) + texture(u_gLightTexture, uv);
 	else if(texture(u_gViewPosDepth,uv).w == 69)
 		color = texture(u_gColor, uv); 
+	else if(texture(u_gViewPosDepth, uv).w == 332)
+		color = vec4(1,0.9,0.3,1) * (diffuse) + texture(u_gLightTexture, uv);
 	else
-		color = texture(u_gColor, uv) * (diffuse +  radiance(normal)) + texture(u_gLightTexture, uv) * AmbientOcclusion(uv);
+		color = vec4(1) * (diffuse + radiance(normal)) + texture(u_gLightTexture, uv) * AmbientOcclusion(uv);
 
 }

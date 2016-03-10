@@ -13,11 +13,11 @@ CShader::CShader(std::string file)
 	auto shadercont = LoadFile(file);
 
 
-	std::vector<std::string> shaders = Split(shadercont, '@');
+	std::vector<std::string> shaders = StringTools::SplitString(shadercont, '@');
 	std::string vertex_content = shaders[0];
 	std::string fragment_content = shaders[1];
 
-	auto splitFragContent = Split(shaders[1], '$');
+	auto splitFragContent = StringTools::SplitString(shaders[1], '$');
 
 	if (splitFragContent.size() > 1)
 	{

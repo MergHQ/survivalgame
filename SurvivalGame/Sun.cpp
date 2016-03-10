@@ -2,7 +2,7 @@
 
 CSun::CSun()
 {
-	m_color = glm::vec3(1,0.5,0);
+	m_color = glm::vec3(1,1,1);
 	m_pos = glm::vec3(2000, 1500, 2000);
 }
 

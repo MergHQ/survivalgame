@@ -11,7 +11,7 @@ int main()
 void CMainWindow::Init()
 {
 	CRenderWindow* pWin = new CRenderWindow;
-	pWin->Create(1024, 768, gSys);
+	pWin->Create(1280, 720, gSys);
 
 	delete pWin;
 	delete gSys;
