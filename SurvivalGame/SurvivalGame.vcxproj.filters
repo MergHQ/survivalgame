@@ -9,26 +9,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Engine">
-      <UniqueIdentifier>{333e44f4-91d9-47fc-a552-af4730d63937}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{3041dfb0-d82d-46f6-9f9a-6c99355c93a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\System">
-      <UniqueIdentifier>{8a5b8da3-2494-42ed-9d0a-bf3d2e359eeb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Rendering">
-      <UniqueIdentifier>{0722fd40-2a21-4c49-8af7-0500ca4c12ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Shaders">
-      <UniqueIdentifier>{aa026012-fc21-47f3-91b9-c3312d566798}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game\System">
       <UniqueIdentifier>{117291f0-389d-4c2b-844a-22675cf9641d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Utils">
-      <UniqueIdentifier>{83da7b2c-96e7-4f0d-af10-6e9271a7e43d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Interfaces">
       <UniqueIdentifier>{36cd032f-da43-447c-ac75-25a14215faa8}</UniqueIdentifier>
@@ -40,212 +25,33 @@
     <Filter Include="Source Files\Game\Camera">
       <UniqueIdentifier>{ffea47fe-cdac-4fec-84f2-4855bebfb4f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\System\Input">
-      <UniqueIdentifier>{eb0d487e-4e7c-4931-b996-986786f35ff9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Environment">
-      <UniqueIdentifier>{7bfc8ee5-e196-4bef-bfcb-aa95d0bb4204}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Engine\Shaders\src">
-      <UniqueIdentifier>{3aac6188-8d4d-460e-bb88-00b4111d89df}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderWindow.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Game\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="tiny_obj_loader.cc">
-      <Filter>Source Files\Engine\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshSystem.cpp">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticMesh.cpp">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\Engine\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Game\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files\Engine\System\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrainGen.cpp">
-      <Filter>Source Files\Game\System</Filter>
-    </ClCompile>
-    <ClCompile Include="noiseutils.cpp">
-      <Filter>Source Files\Engine\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="GBuffer.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="FboTexture.cpp">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="SSAO.cpp">
-      <Filter>Source Files\Engine\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="lodepng.cpp">
-      <Filter>Source Files\Engine\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="PointLight.cpp">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Sun.cpp">
-      <Filter>Source Files\Engine\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="LightSystem.cpp">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="RadianceGen.cpp">
-      <Filter>Source Files\Engine\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="SkyBox.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Pipeline.cc">
-      <Filter>Source Files\Engine\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalSystem.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderWindow.h">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Source Files\Game\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="tiny_obj_loader.h">
-      <Filter>Source Files\Engine\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="IMesh.h">
       <Filter>Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticMesh.h">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshSystem.h">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Source Files\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="IShader.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Source Files\Engine\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.hpp">
-      <Filter>Source Files\Engine\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Source Files\Engine\System\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Source Files\Game\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="IInputListener.h">
       <Filter>Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="TerrainGen.h">
-      <Filter>Source Files\Game\System</Filter>
-    </ClInclude>
-    <ClInclude Include="noiseutils.h">
-      <Filter>Source Files\Engine\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="GBuffer.h">
-      <Filter>Source Files\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="ITexture.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="FboTexture.h">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="SSAO.h">
-      <Filter>Source Files\Engine\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="lodepng.h">
-      <Filter>Source Files\Engine\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="ILight.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="PointLight.h">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Sun.h">
-      <Filter>Source Files\Engine\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="LightSystem.h">
-      <Filter>Source Files\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="RadianceGen.h">
-      <Filter>Source Files\Engine\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="SkyBox.h">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\basic.fx">
-      <Filter>Source Files\Engine\Shaders\src</Filter>
-    </Text>
-    <Text Include="data\final.fx">
-      <Filter>Source Files\Engine\Shaders\src</Filter>
-    </Text>
-    <Text Include="data\null.fx">
-      <Filter>Source Files\Engine\Shaders\src</Filter>
-    </Text>
-    <Text Include="data\pointlight.fx">
-      <Filter>Source Files\Engine\Shaders\src</Filter>
-    </Text>
-    <Text Include="data\radiance_final.fx">
-      <Filter>Source Files\Engine\Shaders\src</Filter>
-    </Text>
-    <Text Include="data\skybox.fx">
-      <Filter>Source Files\Engine\Shaders\src</Filter>
-    </Text>
-    <Text Include="data\ssao.fx">
-      <Filter>Source Files\Engine\Shaders\src</Filter>
-    </Text>
-    <Text Include="data\terrain.fx">
-      <Filter>Source Files\Engine\Shaders\src</Filter>
-    </Text>
-    <Text Include="data\water.fx">
-      <Filter>Source Files\Engine\Shaders\src</Filter>
-    </Text>
+    <Text Include="..\HHEngine32\ReadMe.txt" />
   </ItemGroup>
 </Project>

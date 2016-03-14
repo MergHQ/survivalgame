@@ -1,0 +1,52 @@
+﻿Build started 14/03/2016 23:39:03.
+     1>Project "G:\VSProjects\survivalgame\HHEngine32\HHEngine32.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+     1>ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\HHEngine32.res" HHEngine32.rc 
+       Link:
+         G:\Programs\VS2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\Debug\HHEngine32.dll" /INCREMENTAL /NOLOGO glew32.lib glfw3.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"..\Debug\HHEngine32.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\Debug\HHEngine32.lib" /MACHINE:X86 /DLL Debug\HHEngine32.res
+         Debug\Camera.obj
+         Debug\CameraSystem.obj
+         Debug\dllmain.obj
+         Debug\Engine.obj
+         Debug\FboTexture.obj
+         Debug\GBuffer.obj
+         Debug\GlobalSystem.obj
+         Debug\HHEngine32.obj
+         Debug\Input.obj
+         Debug\LightSystem.obj
+         Debug\lodepng.obj
+         Debug\main.obj
+         Debug\MeshSystem.obj
+         Debug\Pipeline.obj
+         Debug\PointLight.obj
+         Debug\RadianceGen.obj
+         Debug\Renderer.obj
+         Debug\RenderWindow.obj
+         Debug\Shader.obj
+         Debug\SkyBox.obj
+         Debug\SSAO.obj
+         Debug\StaticMesh.obj
+         Debug\stdafx.obj
+         Debug\Sun.obj
+         Debug\Texture.obj
+         Debug\tiny_obj_loader.obj
+            Creating library ..\Debug\HHEngine32.lib and object ..\Debug\HHEngine32.exp
+     1>glfw3.lib(context.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(context.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(init.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(init.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(input.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(input.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(monitor.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(monitor.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(wgl_context.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(wgl_context.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_init.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_init.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_monitor.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_monitor.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_time.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_time.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_tls.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_tls.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(win32_window.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(win32_window.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(window.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(window.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+     1>glfw3.lib(winmm_joystick.obj) : warning LNK4099: PDB 'GLFWVS2015.pdb' was not found with 'glfw3.lib(winmm_joystick.obj)' or at 'G:\VSProjects\survivalgame\Debug\GLFWVS2015.pdb'; linking object as if no debug info
+         HHEngine32.vcxproj -> G:\VSProjects\survivalgame\HHEngine32\..\Debug\HHEngine32.dll
+     1>Done Building Project "G:\VSProjects\survivalgame\HHEngine32\HHEngine32.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.54

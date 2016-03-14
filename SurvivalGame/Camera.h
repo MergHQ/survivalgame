@@ -10,7 +10,7 @@ enum CameraMode
 	EDITOR, GAME
 };
 
-class CCamera : public IInputListener
+class CCamera : public IInputListener, public 
 {
 public:
 	CCamera();
@@ -36,7 +36,7 @@ private:
 	double m_horizontalAngle = 0, m_verticalAngle = 0;
 	double xpos, ypos;
 	double m_oldx = 0, m_oldy = 0;
-	float m_speed = 0.1f;
+	float m_speed = 0.0833f; //5m/s if one unit is a meter.
 	float m_sensitivity = 0.001f;
 	int m_currentCameraMode;
 	int width, height;

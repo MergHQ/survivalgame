@@ -10,7 +10,7 @@ public:
 
 	void GenerateTerrain(int x, int y,float,float,float,float);
 	float GetTerrainHeight(int x, int y);
-	float barryCentric(glm::vec3 p1, glm::vec3  p2, glm::vec3  p3, glm::vec3  pos);
+	float barryCentric(glm::vec3& p1, glm::vec3&  p2, glm::vec3&  p3, glm::vec3&  pos);
 private:
 	void CreateWater();
 	utils::NoiseMap m_heightMap;

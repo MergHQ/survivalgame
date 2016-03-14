@@ -1,6 +1,6 @@
 #include "main.h"
-#include "GlobalSystem.h"
-#include "RenderWindow.h"
+#include <Windows.h>
+#include <GlobalSystem.h>
 
 int main()
 {
@@ -8,12 +8,20 @@ int main()
 	return 0;
 }
 
+extern "C" __declspec(dllimport) void EngineMain(SGlobalSystem* pSys);
+SGlobalSystem*  _gSys;
 void CMainWindow::Init()
 {
-	CRenderWindow* pWin = new CRenderWindow;
-	pWin->Create(1280, 720, gSys);
+	HINSTANCE engineDll = NULL;
+	// Load engine module
+	engineDll = LoadLibraryW(L"HHEngine32.dll");
+	if (engineDll != NULL)
+		EngineMain(_gSys);
+	while (true) 
+	{
+		if (_gSys != nullptr)
+			_gSys->Log("Sjit", nullptr);
+	};
+	FreeLibrary(engineDll);
 
-	delete pWin;
-	delete gSys;
-	exit(EXIT_SUCCESS);
 }

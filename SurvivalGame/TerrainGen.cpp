@@ -86,7 +86,6 @@ void CTerrainGen::GenerateTerrain(int x, int y, float lxb, float uxb, float lyb,
 				}
 			}
 
-
 			normals.push_back(norm.x);
 			normals.push_back(norm.y);
 			normals.push_back(norm.z);
@@ -166,7 +165,7 @@ void CTerrainGen::CreateWater()
 	gSys->pEngine->pMeshSystem->CreateMesh("", "data/water.fx", data);
 }
 
-float CTerrainGen::barryCentric(glm::vec3 p1, glm::vec3  p2, glm::vec3  p3, glm::vec3  pos)
+float CTerrainGen::barryCentric(glm::vec3& p1, glm::vec3&  p2, glm::vec3&  p3, glm::vec3&  pos)
 {
 	float det = (p2.z - p3.z) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.z - p3.z);
 	float l1 = ((p2.z - p3.z) * (pos.x - p3.x) + (p3.x - p2.x) * (pos.y - p3.z)) / det;

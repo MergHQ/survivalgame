@@ -72,13 +72,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath);../HHEngine32</IncludePath>
+    <LibraryPath>G:\VSProjects\survivalgame\SurvivialGame;$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
     <TargetName>Game</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\include;C:\VulkanSDK\1.0.3.1\Include\vulkan;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,8 +98,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libnoise.lib;glew32.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <AdditionalDependencies>HHEngine32.lib;libnoise.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -154,92 +154,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="FboTexture.cpp" />
-    <ClCompile Include="GBuffer.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="LightSystem.cpp" />
-    <ClCompile Include="lodepng.cpp" />
-    <ClCompile Include="noiseutils.cpp" />
-    <ClCompile Include="Pipeline.cc" />
-    <ClCompile Include="PointLight.cpp" />
-    <ClCompile Include="RadianceGen.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GlobalSystem.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MeshSystem.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="RenderWindow.cpp" />
-    <ClCompile Include="SkyBox.cpp" />
-    <ClCompile Include="SSAO.cpp" />
-    <ClCompile Include="StaticMesh.cpp" />
-    <ClCompile Include="Sun.cpp" />
-    <ClCompile Include="TerrainGen.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="tiny_obj_loader.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="FboTexture.h" />
-    <ClInclude Include="GBuffer.h" />
     <ClInclude Include="IInputListener.h" />
     <ClInclude Include="ILight.h" />
-    <ClInclude Include="Input.h" />
     <ClInclude Include="ITexture.h" />
-    <ClInclude Include="LightSystem.h" />
-    <ClInclude Include="lodepng.h" />
-    <ClInclude Include="noiseutils.h" />
-    <ClInclude Include="PointLight.h" />
-    <ClInclude Include="RadianceGen.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GlobalSystem.h" />
     <ClInclude Include="IShader.h" />
     <ClInclude Include="IMesh.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="MeshSystem.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="RenderWindow.h" />
-    <ClInclude Include="SkyBox.h" />
-    <ClInclude Include="SSAO.h" />
-    <ClInclude Include="StaticMesh.h" />
-    <ClInclude Include="Sun.h" />
-    <ClInclude Include="TerrainGen.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="tiny_obj_loader.h" />
-    <ClInclude Include="Utils.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\basic.fx">
-      <FileType>Document</FileType>
-    </Text>
-    <Text Include="data\final.fx">
-      <FileType>Document</FileType>
-    </Text>
-    <Text Include="data\null.fx">
-      <FileType>Document</FileType>
-    </Text>
-    <Text Include="data\pointlight.fx">
-      <FileType>Document</FileType>
-    </Text>
-    <Text Include="data\radiance_final.fx">
-      <FileType>Document</FileType>
-    </Text>
-    <Text Include="data\skybox.fx">
-      <FileType>Document</FileType>
-    </Text>
-    <Text Include="data\ssao.fx">
-      <FileType>Document</FileType>
-    </Text>
-    <Text Include="data\terrain.fx">
-      <FileType>Document</FileType>
-    </Text>
-    <Text Include="data\water.fx">
-      <FileType>Document</FileType>
-    </Text>
+    <Text Include="..\HHEngine32\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
