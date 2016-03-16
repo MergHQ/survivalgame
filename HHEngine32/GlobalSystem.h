@@ -8,7 +8,7 @@ class CEngine;
 class CGame;
 struct GLFWwindow;
 
-struct _declspec(dllexport) SGlobalSystem
+struct __declspec(dllexport) SGlobalSystem
 {
 public:
 

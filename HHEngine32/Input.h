@@ -4,7 +4,7 @@ struct IInputListener;
 struct GLFWwindow;
 #include <vector>
 
-class CInput
+class __declspec(dllexport) CInput
 {
 public:
 	CInput();

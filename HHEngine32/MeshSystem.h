@@ -3,7 +3,7 @@
 #include <vector>
 #include "IMesh.h"
 
-struct SMeshData
+struct __declspec(dllexport) SMeshData
 {
 	std::vector<float> positions;
 	std::vector<float> normals;
@@ -11,7 +11,7 @@ struct SMeshData
 	std::vector<float> texcoord;
 };
 
-class CMeshSystem
+class __declspec(dllexport) CMeshSystem
 {
 public:
 	CMeshSystem();

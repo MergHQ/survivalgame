@@ -9,6 +9,7 @@
 #include "Pipeline.cc"
 #include <glm\gtc\type_ptr.hpp>
 
+
 CGBuffer::CGBuffer(int w, int h, std::string shader)
 {
 

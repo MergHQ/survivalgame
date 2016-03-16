@@ -9,19 +9,14 @@ int main()
 }
 
 extern "C" __declspec(dllimport) void EngineMain(SGlobalSystem* pSys);
-SGlobalSystem*  _gSys;
+
 void CMainWindow::Init()
 {
 	HINSTANCE engineDll = NULL;
 	// Load engine module
 	engineDll = LoadLibraryW(L"HHEngine32.dll");
 	if (engineDll != NULL)
-		EngineMain(_gSys);
-	while (true) 
-	{
-		if (_gSys != nullptr)
-			_gSys->Log("Sjit", nullptr);
-	};
+		EngineMain(nullptr);
 	FreeLibrary(engineDll);
 
 }

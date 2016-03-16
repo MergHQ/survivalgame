@@ -4,7 +4,6 @@
 #include "MeshSystem.h"
 #include "Input.h"
 #include "CameraSystem.h"
-#include "Camera.h"
 
 CEngine::CEngine()
 {
@@ -25,7 +24,6 @@ void CEngine::Init()
 	pInput = new CInput;
 
 	pCamSys = new CCameraSystem;
-	new CCamera;
 	pRenderer = new CRenderer;
 	pRenderer->InitDependencies();
 }

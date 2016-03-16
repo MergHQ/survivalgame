@@ -4,7 +4,7 @@
 
 struct GLFWwindow;
 
-struct ICamera
+struct __declspec(dllexport) ICamera
 {
 	virtual ~ICamera() {};
 	virtual void Update(GLFWwindow* w, double dt) = 0;

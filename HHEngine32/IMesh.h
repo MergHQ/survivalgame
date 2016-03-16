@@ -9,7 +9,7 @@
 
 struct ITexture;
 
-struct IMesh
+struct __declspec(dllexport) IMesh
 {
 	virtual ~IMesh() {};
 	virtual unsigned int GetMeshId() = 0;

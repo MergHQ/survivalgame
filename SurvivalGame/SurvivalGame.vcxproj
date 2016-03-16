@@ -23,7 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SurvivalGame</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>SurvivialGame</ProjectName>
+    <ProjectName>Launcher</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -73,7 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)\include;$(IncludePath);../HHEngine32</IncludePath>
-    <LibraryPath>G:\VSProjects\survivalgame\SurvivialGame;$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>../Debug;$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
     <TargetName>Game</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
