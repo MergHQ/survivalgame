@@ -18,6 +18,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
 		}
 		case DLL_PROCESS_DETACH:
 		{
+			delete gSys;
 			break;
 		}
 	}

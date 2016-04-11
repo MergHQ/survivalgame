@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="EnvironmentProbe.h" />
     <ClInclude Include="FboTexture.h" />
     <ClInclude Include="GBuffer.h" />
     <ClInclude Include="GlobalSystem.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="RenderWindow.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShadowGen.h" />
     <ClInclude Include="SkyBox.h" />
     <ClInclude Include="SSAO.h" />
     <ClInclude Include="StaticMesh.h" />
@@ -198,6 +200,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="EnvironmentProbe.cpp" />
     <ClCompile Include="FboTexture.cpp" />
     <ClCompile Include="GBuffer.cpp" />
     <ClCompile Include="GlobalSystem.cpp" />
@@ -213,6 +216,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderWindow.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShadowGen.cpp" />
     <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="SSAO.cpp" />
     <ClCompile Include="StaticMesh.cpp" />
@@ -257,6 +261,14 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HHEngine32.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\SurvivalGame\data\shadowmaps.fx">
+      <FileType>Document</FileType>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

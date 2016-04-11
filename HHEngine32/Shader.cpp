@@ -2,7 +2,6 @@
 #include "Shader.h"
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <ctime>
 #include <io.h>
 #include "GlobalSystem.h"
@@ -128,4 +127,6 @@ void CShader::GenerateUniformLocations()
 	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_shR"));
 	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_shG"));
 	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_shB"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_depthBiasMVP"));
+	m_uniformLocations.push_back(glGetUniformLocation(m_program, "u_shadowmap"));
 }

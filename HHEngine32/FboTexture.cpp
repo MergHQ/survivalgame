@@ -15,15 +15,17 @@ CFboTexture::CFboTexture(GLint cbt, GLint dataType, GLint colorAttachment, int w
 		mode = GL_DEPTH_STENCIL;
 	else if (cbt == GL_RGBA)
 		mode = GL_RGB;
+	else if (cbt == GL_DEPTH_COMPONENT16)
+		mode = GL_DEPTH_COMPONENT;
 	else mode = cbt;
 
 	glGenTextures(1, &m_texId);
 	glBindTexture(GL_TEXTURE_2D, m_texId);
 	glTexImage2D(GL_TEXTURE_2D, 0, cbt, width, height, 0, mode, dataType, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glFramebufferTexture(GL_FRAMEBUFFER, colorAttachment, m_texId, 0);
 }
 

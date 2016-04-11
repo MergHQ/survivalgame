@@ -58,7 +58,7 @@ void main()
 	else if(texture(u_gViewPosDepth,uv).w == 69)
 		color = texture(u_gColor, uv); 
 	else if(texture(u_gViewPosDepth, uv).w == 332)
-		color = vec4(1,0.9,0.3,1) * (diffuse) + texture(u_gLightTexture, uv);
+		color = texture(u_gColor, uv) * (diffuse) + texture(u_gLightTexture, uv);
 	else
-		color = vec4(1)* (diffuse) + texture(u_gLightTexture, uv) * AmbientOcclusion(uv);
+		color = texture(u_gColor, uv) * (diffuse) + texture(u_gLightTexture, uv) * AmbientOcclusion(uv);
 }

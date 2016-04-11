@@ -26,16 +26,13 @@ uniform float u_ssaoRadius;
 uniform mat4 u_projMat;
 uniform vec3 u_cameraPos;
 uniform sampler2D u_noiseTexture;
+uniform sampler2D u_shadowmap;
 
 uniform vec3 u_lightColor;
 uniform vec3 u_lightPos;
 
 uniform int u_width;
 uniform int u_height;
-
-uniform mat4 u_shR;
-uniform mat4 u_shG;
-uniform mat4 u_shB;
 
 vec2 GetUv()
 {
@@ -44,19 +41,6 @@ vec2 GetUv()
 
 // Include ssao
 $data/ssao.fx$
-
-vec4 radiance(vec3 normal)
-{
-	vec4 final;
-	vec4 castedNormal = normalize(vec4(normal, 1));
-
-	final.r = dot(castedNormal, u_shR * castedNormal);
-	final.g = dot(castedNormal, u_shG* castedNormal);
-	final.b = dot(castedNormal, u_shB * castedNormal);
-	final.a = 1;
-
-	return final;
-}
 
 void main()
 {
@@ -75,8 +59,8 @@ void main()
 	else if(texture(u_gViewPosDepth,uv).w == 69)
 		color = texture(u_gColor, uv); 
 	else if(texture(u_gViewPosDepth, uv).w == 332)
-		color = vec4(1,0.9,0.3,1) * (diffuse) + texture(u_gLightTexture, uv);
+		color = texture(u_gColor, uv) * (diffuse) + texture(u_gLightTexture, uv);
 	else
-		color = vec4(1) * (diffuse + radiance(normal)) + texture(u_gLightTexture, uv) * AmbientOcclusion(uv);
-
+		color = texture(u_gColor, uv);
+	//color = texture(u_shadowmap, uv);
 }

@@ -37,6 +37,9 @@
     <Filter Include="Source Files\System\Input">
       <UniqueIdentifier>{4a7c7e8b-b853-45e5-b9dc-f30fea9f3293}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Lights">
+      <UniqueIdentifier>{cf07da83-bbe9-48c9-bc87-ae4a95100f1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -78,13 +81,7 @@
     <ClInclude Include="FboTexture.h">
       <Filter>Source Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="LightSystem.h">
-      <Filter>Source Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="MeshSystem.h">
-      <Filter>Source Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="PointLight.h">
       <Filter>Source Files\System</Filter>
     </ClInclude>
     <ClInclude Include="StaticMesh.h">
@@ -132,6 +129,18 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ShadowGen.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Source Files\Rendering\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="LightSystem.h">
+      <Filter>Source Files\Rendering\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="EnvironmentProbe.h">
+      <Filter>Source Files\Rendering\Lights</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -161,13 +170,7 @@
     <ClCompile Include="FboTexture.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
-    <ClCompile Include="LightSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
     <ClCompile Include="MeshSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="PointLight.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="StaticMesh.cpp">
@@ -209,6 +212,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShadowGen.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Source Files\Rendering\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="LightSystem.cpp">
+      <Filter>Source Files\Rendering\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="EnvironmentProbe.cpp">
+      <Filter>Source Files\Rendering\Lights</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\SurvivalGame\data\basic.fx">
@@ -238,10 +253,16 @@
     <Text Include="..\SurvivalGame\data\water.fx">
       <Filter>Source Files\Shaders\src</Filter>
     </Text>
+    <Text Include="..\SurvivalGame\data\shadowmaps.fx">
+      <Filter>Source Files\Shaders\src</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HHEngine32.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

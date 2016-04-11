@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Engine.h"
 #include <GLFW\glfw3.h>
-#include <Windows.h>
 #include <Game.h>
 
 extern "C" __declspec(dllimport) void GameMain(SGlobalSystem* gSys, CGame* pGame);
@@ -17,6 +16,7 @@ SGlobalSystem::SGlobalSystem(GLFWwindow* win)
 SGlobalSystem::~SGlobalSystem()
 {
 	delete pGame;
+	FreeLibrary(m_gameModule);
 	delete pEngine;
 }
 
@@ -28,8 +28,8 @@ void SGlobalSystem::Init()
 
 
 	// Load game module
-	HANDLE g = LoadLibraryW(L"GameModule.dll");
-	if (g != NULL)
+	m_gameModule = LoadLibraryW(L"GameModule.dll");
+	if (m_gameModule != NULL)
 	{
 		GameMain(this, pGame);
 		Log("Game module loaded", this);

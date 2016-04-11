@@ -11,6 +11,7 @@ public:
 	virtual glm::vec3& GetLightPosition() { return m_pos; }
 	virtual void SetLightPosition(glm::vec3& pos) { m_pos = pos; }
 	virtual glm::vec3& GetSetLightColor(glm::vec3 color, bool set);
+	virtual CShadowGen* GetShadowMap() { return nullptr; } // TODO: implement omnidirectional shadowmaps.
 	// ~~ILight
 
 	float CalcRadius();

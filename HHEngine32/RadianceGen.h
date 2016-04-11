@@ -4,18 +4,21 @@
 #include <glm\mat4x4.hpp>
 
 class CGBuffer;
+class CEnvironmentProbe;
+
+struct EnvProbeThreadJob
+{
+	bool isDone = true;
+	CEnvironmentProbe* pProbe;
+};
 
 class CRadianceGen
 {
 public:
 	CRadianceGen();
 	~CRadianceGen();
-	bool souldGenerate;
-	BYTE data[6][64 * 64 * 3];
-	glm::mat4x4 shValues_r;
-	glm::mat4x4 shValues_g;
-	glm::mat4x4 shValues_b;
-	void Render();
+	EnvProbeThreadJob currentJob;
+	void Render(CEnvironmentProbe* pProbe);
 	void GetTexelAttrib(const int texId, const float u, const float v, const float texelSize, glm::vec3 *direction, float *solidAngle);
 private:
 	HANDLE m_shThread;

@@ -3,6 +3,7 @@
 #include <time.h>
 #include <glm\vec3.hpp>
 #include <glm\vec2.hpp>
+#include <Windows.h>
 
 class CEngine;
 class CGame;
@@ -23,6 +24,8 @@ public:
 	void Update();
 	template <class T> 
 	void Log(std::string text, const T& obj);
+
+	HMODULE m_gameModule;
 };
 
 extern SGlobalSystem* gSys;

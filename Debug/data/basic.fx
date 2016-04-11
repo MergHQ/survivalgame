@@ -8,6 +8,7 @@ uniform mat4 u_modelMat;
 uniform mat4 u_viewMat;
 uniform mat4 u_projMat;
 uniform mat4 u_2world;
+uniform mat4 u_depthBiasMVP;
 
 out vec3 v_normal;
 out vec3 v_pos;
@@ -15,6 +16,8 @@ out vec2 v_texCoord;
 
 out vec3 v_fragPos;
 out vec3 v_fragNormal;
+
+out vec4 v_shadowCoord;
 
 void main()
 {
@@ -25,6 +28,7 @@ void main()
 	v_pos = (u_2world * vec4(vertexPosition, 1.0)).xyz;
 	v_texCoord = texcoord;
 	gl_Position = u_projMat*viewPos;
+	v_shadowCoord = u_depthBiasMVP * vec4(vertexPosition, 1.0);
 }
 
 @
@@ -44,7 +48,10 @@ in vec2 v_texCoord;
 in vec3 v_fragPos;
 in vec3 v_fragNormal;
 
+in vec4 v_shadowCoord;
+
 uniform sampler2D u_texSampler;
+uniform sampler2D u_shadowmap;
 
 const float NEAR = 0.1f;
 const float FAR = 1000.0f;
@@ -63,5 +70,11 @@ void main()
 	gDepthPos.w = LinearizeDepth(gl_FragCoord.z);
 	gViewNormal.xyz = normalize(v_fragNormal);
 
-	gColor = texture(u_texSampler, v_texCoord);
+	float visibility = 1.0;
+	if ( texture( u_shadowmap, v_shadowCoord.xy ).z  <  v_shadowCoord.z)
+	{
+		visibility = 0.5;
+	}
+
+	gColor = texture(u_texSampler, v_texCoord) * visibility;
 }

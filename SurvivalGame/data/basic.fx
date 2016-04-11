@@ -8,6 +8,7 @@ uniform mat4 u_modelMat;
 uniform mat4 u_viewMat;
 uniform mat4 u_projMat;
 uniform mat4 u_2world;
+uniform mat4 u_depthBiasMVP;
 
 out vec3 v_normal;
 out vec3 v_pos;
@@ -15,6 +16,8 @@ out vec2 v_texCoord;
 
 out vec3 v_fragPos;
 out vec3 v_fragNormal;
+
+out vec4 v_shadowCoord;
 
 void main()
 {
@@ -25,6 +28,7 @@ void main()
 	v_pos = (u_2world * vec4(vertexPosition, 1.0)).xyz;
 	v_texCoord = texcoord;
 	gl_Position = u_projMat*viewPos;
+	v_shadowCoord = u_depthBiasMVP * vec4(vertexPosition, 1.0);
 }
 
 @
@@ -44,7 +48,14 @@ in vec2 v_texCoord;
 in vec3 v_fragPos;
 in vec3 v_fragNormal;
 
+in vec4 v_shadowCoord;
+
 uniform sampler2D u_texSampler;
+uniform sampler2D u_shadowmap;
+
+uniform mat4 u_shR;
+uniform mat4 u_shG;
+uniform mat4 u_shB;
 
 const float NEAR = 0.1f;
 const float FAR = 1000.0f;
@@ -55,6 +66,19 @@ float LinearizeDepth(float depth)
     return (2.0 * NEAR * FAR) / (FAR + NEAR - z * (FAR - NEAR));		
 }
 
+vec4 radiance(vec3 normal)
+{
+	vec4 final;
+	vec4 castedNormal = normalize(vec4(normal, 1));
+
+	final.r = dot(castedNormal, u_shR * castedNormal);
+	final.g = dot(castedNormal, u_shG* castedNormal);
+	final.b = dot(castedNormal, u_shB * castedNormal);
+	final.a = 1;
+
+	return final;
+}
+
 void main()
 {
 	gNormal = v_normal;
@@ -63,5 +87,11 @@ void main()
 	gDepthPos.w = LinearizeDepth(gl_FragCoord.z);
 	gViewNormal.xyz = normalize(v_fragNormal);
 
-	gColor = texture(u_texSampler, v_texCoord);
+	float visibility = 1.0;
+	if ( texture( u_shadowmap, v_shadowCoord.xy ).z  <  v_shadowCoord.z-0.005)
+	{
+		visibility = 0.5;
+	}
+
+	gColor = radiance(v_normal);
 }

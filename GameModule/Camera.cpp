@@ -42,6 +42,7 @@ void CCamera::Update(GLFWwindow* w, double dt)
 		cos(m_verticalAngle) * cos(m_horizontalAngle)
 		);
 
+
 	// Movement
 	if (m_forward != m_backwards || m_right != m_left)
 		move(w, dt);

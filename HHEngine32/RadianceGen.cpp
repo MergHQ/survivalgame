@@ -5,7 +5,7 @@
 	kind of interpolation on the actual sh values to provide a smooth fade between different time of days.
 
 	The speed of the spherical harmonic function is dependent on the size of the environment texture.
-	The sample count ís 6*(w*h) where w is the texture width and h is the texture height. 
+	The sample count is 6*(w*h) where w is the texture width and h is the texture height. 
 	For example, a 128x128 pixel texture would need 98304 iterations.
 */
 
@@ -38,14 +38,20 @@
 #include "Shader.h"
 #include <glm\gtc\matrix_transform.hpp>
 #include "lodepng.h"
+#include "EnvironmentProbe.h"
+#include "lodepng.h"
 
 DWORD WINAPI ShThread(void* arguments)
 {
 
 	while (true)
 	{
-		if (gSys->pEngine->pRenderer->GetRadianceGen() && gSys->pEngine->pRenderer->GetRadianceGen()->souldGenerate)
+		EnvProbeThreadJob job;
+		if(gSys->pEngine->pRenderer->GetRadianceGen() != nullptr)
+			job = gSys->pEngine->pRenderer->GetRadianceGen()->currentJob;
+		if (gSys->pEngine->pRenderer->GetRadianceGen() && !job.isDone)
 		{
+
 			float shCoeff[3][9];
 			memset(shCoeff[RED], 0, 9u*sizeof(float));
 			memset(shCoeff[GREEN], 0, 9u*sizeof(float));
@@ -61,7 +67,7 @@ DWORD WINAPI ShThread(void* arguments)
 			for (int face = 0; face < 6; ++face)
 			{
 				float u, v;
-				unsigned char *pixels = gSys->pEngine->pRenderer->GetRadianceGen()->data[face];
+				unsigned char *pixels = job.pProbe->data[face];
 
 				for (int i = 0; i < texRes; ++i)
 				{
@@ -154,22 +160,22 @@ DWORD WINAPI ShThread(void* arguments)
 				}
 
 				auto rg = gSys->pEngine->pRenderer->GetRadianceGen();
-				rg->shValues_r = M[0];
-				rg->shValues_g = M[1];
-				rg->shValues_b = M[2];
+				job.pProbe->shValues_r = M[0];
+				job.pProbe->shValues_g = M[1];
+				job.pProbe->shValues_b = M[2];
 				gSys->Log("Generated face sh", nullptr);
 			}
 
-			Sleep(10000);
-
+			gSys->pEngine->pRenderer->GetRadianceGen()->currentJob.isDone = true;
 		}
 	}
 	return 0;
 }
 
-void CRadianceGen::Render()
+void CRadianceGen::Render(CEnvironmentProbe* pProbe)
 {
-	Vec3 pos = Vec3(0, 30.f, 0);
+
+	Vec3 pos = pProbe->GetLightPosition();
 	glm::mat4 views[6] = {
 		glm::lookAt(pos, pos+glm::vec3(1,0,0),glm::vec3(0,-1,0)),
 		glm::lookAt(pos, pos+glm::vec3(-1,0,0),glm::vec3(0,-1,0)),
@@ -205,9 +211,16 @@ void CRadianceGen::Render()
 		gSys->pEngine->pRenderer->GetSkybox()->Draw();
 		m_pGBuffer->RenderQuad();
 		glPixelStorei(GL_PACK_ALIGNMENT, 1);
-		glReadPixels(0, 0, m_pGBuffer->width, m_pGBuffer->height, GL_RGB, GL_UNSIGNED_BYTE, data[i]);
+		glReadPixels(0, 0, m_pGBuffer->width, m_pGBuffer->height, GL_RGB, GL_UNSIGNED_BYTE, pProbe->data[i]);
 	}
-	souldGenerate = true;
+
+	// Create thread job
+	EnvProbeThreadJob job;
+	job.isDone = false;
+	job.pProbe = pProbe;
+
+	currentJob = job;
+
 }
 
 void CRadianceGen::GetTexelAttrib(const int texId, const float u, const float v, const float texelSize,
@@ -263,7 +276,7 @@ void CRadianceGen::GetTexelAttrib(const int texId, const float u, const float v,
 
 CRadianceGen::CRadianceGen()
 {
-	souldGenerate = false;
+	currentJob = EnvProbeThreadJob();
 	m_shThread = CreateThread(nullptr, 0, ShThread, 0, 0, nullptr);
 	m_pGBuffer = new CGBuffer(64, 64, "data/radiance_final.fx");
 }

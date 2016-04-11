@@ -9,21 +9,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Game">
-      <UniqueIdentifier>{3041dfb0-d82d-46f6-9f9a-6c99355c93a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Game\System">
-      <UniqueIdentifier>{117291f0-389d-4c2b-844a-22675cf9641d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Interfaces">
       <UniqueIdentifier>{36cd032f-da43-447c-ac75-25a14215faa8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Game\Camera">
-      <UniqueIdentifier>{ffea47fe-cdac-4fec-84f2-4855bebfb4f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

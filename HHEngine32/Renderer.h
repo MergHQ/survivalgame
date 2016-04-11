@@ -6,8 +6,9 @@
 #include "SkyBox.h"
 
 class CSSAO;
+class CEnvironmentProbe;
 
-class CRenderer
+class __declspec(dllexport) CRenderer
 {
 public:
 	CRenderer() {};
@@ -21,6 +22,7 @@ public:
 	CRadianceGen* GetRadianceGen() { return m_radianceGen; }
 	CSkyBox* GetSkybox() { return m_pSkybox; }
 
+
 private:
 	void MeshPass();
 	void ClearFrame();
@@ -29,5 +31,6 @@ private:
 	CLightSystem* m_pLightSystem;
 	CRadianceGen* m_radianceGen;
 	CSkyBox* m_pSkybox;
+	CEnvironmentProbe* m_pEnvProbe; // For now, we'll use one probe.
 };
 

@@ -3,6 +3,7 @@
 #include <glm\common.hpp>
 #include <glm\vec3.hpp>
 #include <vector>
+#include <Windows.h>
 
 namespace StringTools
 {
@@ -21,5 +22,18 @@ namespace StringTools
 		std::vector<std::string> elems;
 		sOperation(s, delim, elems);
 		return elems;
+	}
+}
+
+namespace ModuleManager
+{
+	inline HMODULE LoadModule(std::string p)
+	{
+		return LoadLibraryW((LPCWSTR)p.c_str());
+	}
+
+	inline void UnloadModule(HMODULE mod)
+	{
+		FreeLibrary(mod);
 	}
 }

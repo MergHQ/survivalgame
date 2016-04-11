@@ -46,4 +46,5 @@ void CSkyBox::Draw()
 	glDepthFunc(OldDepthFuncMode);
 
 	glUseProgram(NULL);
+	glActiveTexture(0);
 }

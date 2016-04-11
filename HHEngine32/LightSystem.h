@@ -7,7 +7,7 @@
 
 class CSun;
 
-class CLightSystem
+class __declspec(dllexport) CLightSystem
 {
 public:
 	CLightSystem();

@@ -48,6 +48,9 @@ CSSAO::~CSSAO()
 
 void CSSAO::SendUniforms(GLuint uniform1, GLuint uniform2, GLuint uniform3, GLuint uniform4)
 {
+	if (!gSys->pEngine->pCamSys->GetCurrentCamera())
+		return;
+
 	glUniform3fv(uniform1, m_kernelPoints.size(), reinterpret_cast<GLfloat*>(m_kernelPoints.data()));
 	glUniform1f(uniform2, radius);
 	glUniformMatrix4fv(uniform3, 1, GL_FALSE, glm::value_ptr(gSys->pEngine->pCamSys->GetCurrentCamera()->GetProjectionMatrix()));
